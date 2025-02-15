@@ -1,0 +1,16 @@
+# Folders and compiled files
+classes/
+checkouts/
+target/
+out/
+
+# Ignore local project-specific config
+.clj-kondo/
+.lsp/
+
+# Ignore resources
+/resources
+
+# Ignore the REPL files
+.nrepl-port
+.prepl-port
