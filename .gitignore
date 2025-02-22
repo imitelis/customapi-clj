@@ -8,9 +8,6 @@ out/
 .clj-kondo/
 .lsp/
 
-# Ignore resources
-/resources
-
 # Ignore the REPL files
 .nrepl-port
 .prepl-port

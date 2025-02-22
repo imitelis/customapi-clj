@@ -7,7 +7,8 @@
             [customapi.routes.math :refer [math-routes]]
             [customapi.routes.openapi :refer [openapi-routes]]
             [reitit.ring :as ring]
-            [ring.adapter.jetty :as jetty]))
+            [ring.adapter.jetty :as jetty])
+  (:gen-class))
 
 (def app
   (ring/ring-handler

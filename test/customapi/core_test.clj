@@ -1,6 +1,6 @@
-(ns customapi.test-core
+(ns customapi.core-test
   (:require [clojure.test :refer :all]
-            [customapi-clj.core :refer :all]))
+            [customapi.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
