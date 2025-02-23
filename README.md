@@ -1,32 +1,36 @@
 # customapi
 
-FIXME: description
+Just a silly CustomAPI project making use of Clojure specific libraries to build a service layered backend that aims to be as similar as possible (both in architecture and experience) to FastAPI.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+  *  Check `java` is installed with `java -version` (default version: `openjdk version "21.0.5"`)
+  *  Check `lein` is installed with `lein -version` (default version: `Leiningen 2.11.2 on Java 21.0.5 OpenJDK`)
+  *  Run `lein deps` to install all required dependencies listed in `project.clj`
+  *  Run `lein run` to start server at `localhost:3000` by default
 
 ## Usage
 
-FIXME: explanation
-
-    $ java -jar customapi-0.1.0-standalone.jar [args]
+  *  Check `docker` is installed with `docker -version` (default version: `Docker version 27.5.1`)
+  *  Run `lein uberjar` to compile project and get a `/target/uberjar/customapi-0.1.0-standalone.jar` file
+  *  Build a docker image for running the `.jar` with `docker build -t customapi .`
+  *  Run the docker container afer building its image with `docker run -p 3000:3000 customapi`
 
 ## Options
 
-FIXME: listing of options this app accepts.
+  *  `lein run`: Start the server on default settings
+  *  `lein deps`: Check project dependencies and install them
+  *  `lein clean`: Clean dependencies libraries and cache
+  *  `lein lint`: Lint `clojure` code and fix linting issues
+  *  `lein uberjar`: Compile project into a portable `.jar` file
 
-## Examples
+## Features
 
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+  *  Logger: Making use of `slf4j` lib and just for chosen logs via `/resources/logback.xml`
+  *  Migrations: Automatically set database tables and connection via `/src/customapi/config/database.clj` 
+  *  Middlewares: Fully integrated customizable middlewares via `/src/customapi/config/middleware.clj`
+  *  Modularity: Segregation of layers; customizable and sustainable folders organization
+  *  OpenAPI: Self-documenting and interacteable API endpoints at `localhost:3000/index.html`
 
 ## License
 
