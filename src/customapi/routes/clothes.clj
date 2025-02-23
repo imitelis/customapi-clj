@@ -5,7 +5,7 @@
   ["/clothes"
    {:tags ["clothes"]}
 
-   ["/plus" 
+   ["/plus"
     {:get {:summary "retrieve clothes"
            :parameters nil
            :responses {200 {:body ::ms/math-response}}
