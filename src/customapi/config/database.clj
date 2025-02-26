@@ -9,3 +9,12 @@
 
 (defn initialize-db []
   (create-tables))
+
+(defn get-clothes []
+  (jdbc/execute! db-spec ["SELECT * FROM clothes"]))
+
+(defn add-cloth [cloth]
+  ;; (println "cloth type from db" (:type cloth))
+  (jdbc/execute! db-spec
+                 ["INSERT INTO clothes (name, type, size) VALUES (?, ?, ?)"
+                  (:name cloth) (:type cloth) (:size cloth)]))

@@ -1,14 +1,14 @@
 (ns customapi.routes.clothes
-  (:require [customapi.specs.math :as ms]))
+  (:require [customapi.specs.clothes :as cs]
+            [customapi.handlers.clothes :as ch]))
 
 (def clothes-routes
   ["/clothes"
    {:tags ["clothes"]}
 
-   ["/plus"
-    {:get {:summary "retrieve clothes"
-           :parameters nil
-           :responses {200 {:body ::ms/math-response}}
-           :handler (fn [{{{:keys [x y]} :query} :parameters}]
-                      {:status 200
-                       :body {:total (+ x y)}})}}]])
+   ["/"
+    {:post {:summary "Add a new cloth"
+            :parameters {:body ::cs/cloth-parameter}
+            :responses {201 {:body nil}  ; 201 Created response
+                        400 {:body {:error string?}}}  ; 400 Bad Request response for invalid data
+            :handler ch/add-cloth-handler}}]])

@@ -8,7 +8,9 @@
    [reitit.ring.middleware.multipart :as multipart]
    [reitit.ring.middleware.muuntaja :as muuntaja]
    [reitit.ring.middleware.parameters :as parameters]
-   [reitit.swagger :as swagger]))
+   [reitit.swagger :as swagger]
+   [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
+   [ring.logger :as logger]))
 
 (def set-middleware
   [;; swagger feature
@@ -27,8 +29,12 @@
    coercion/coerce-response-middleware
    ;; coercing request parameters
    coercion/coerce-request-middleware
-
-   ;; multipart
+   ;; logger wrapping
+   logger/wrap-with-logger
+   ;; [wrap-json-response]
+   wrap-json-body
+   wrap-json-response
+   ;; multipart middleware
    multipart/multipart-middleware])
 
 (def use-middleware

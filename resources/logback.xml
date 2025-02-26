@@ -9,7 +9,7 @@
 
   <!-- Root logger configuration -->
   <!-- Change the log level to WARN to reduce the amount of logs -->
-  <root level="warn">
+  <root level="info">
     <appender-ref ref="STDOUT" />
   </root>
 
