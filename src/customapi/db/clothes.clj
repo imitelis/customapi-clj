@@ -8,10 +8,11 @@
     (jdbc/execute!
      dc/db-spec
      ["INSERT INTO clothes (uuid, name, type, size) VALUES (?, ?, ?, ?)"
-      cloth-uuid (:name cloth) (:type cloth) (:size cloth)])))
+      cloth-uuid (:name cloth) (:type cloth) (:size cloth)])
+    cloth-uuid))
 
 (defn get-clothes []
-  (let [clothes (jdbc/execute! dc/db-spec ["SELECT * FROM clothes"])] 
+  (let [clothes (jdbc/execute! dc/db-spec ["SELECT * FROM clothes"])]
     clothes))
 
 (defn get-a-cloth [uuid]

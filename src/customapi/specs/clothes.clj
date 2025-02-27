@@ -7,4 +7,4 @@
 (s/def ::size number?)
 (s/def ::cloth-without-uuid (s/keys :req-un [::name ::type ::size]))
 (s/def ::cloth (s/keys :req-un [::uuid ::name ::type ::size]))
-(s/def ::clothes-response-list (s/coll-of ::cloth :kind vector?))
+(s/def ::clothes (s/coll-of ::cloth :kind vector?))

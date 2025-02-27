@@ -15,9 +15,9 @@
             :handler cc/add-cloth-controller}
      :get {:summary "Get clothes"
            :parameters {:body nil}
-           :responses {200 {:body ::cs/clothes-response-list}
+           :responses {200 {:body ::cs/clothes}
                        404 {:body {:error string?}}}
-           :handler cc/get-clothes-controller}}]
+           :handler cc/retrieve-clothes-controller}}]
 
    ["/:uuid"
     {:get {:summary "Get a cloth by UUID"
@@ -25,7 +25,7 @@
            :responses {200 {:body ::cs/cloth}
                        400 {:body {:error string?}}
                        404 {:body {:error string?}}}
-           :handler cc/get-cloth-controller}
+           :handler cc/retrieve-cloth-controller}
      :delete {:summary "Delete a cloth by UUID"
               :parameters {:path {:uuid uuid?}}
               :responses {204 {:body nil}
@@ -34,7 +34,7 @@
      :patch {:summary "Patch a cloth by UUID"
              :parameters {:path {:uuid uuid?}
                           :body ::cs/cloth-without-uuid}
-             :responses {200 {:body nil}
+             :responses {200 {:body ::cs/cloth}
                          400 {:body {:error string?}}
                          404 {:body {:error string?}}}
              :handler cc/edit-cloth-controller}}]])
