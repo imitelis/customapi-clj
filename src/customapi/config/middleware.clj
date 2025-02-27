@@ -27,8 +27,6 @@
    muuntaja/format-request-middleware
    ;; coercing response bodys
    coercion/coerce-response-middleware
-   ;; coercing request parameters
-   coercion/coerce-request-middleware
    ;; logger wrapping
    logger/wrap-with-logger
    ;; json body wrapping

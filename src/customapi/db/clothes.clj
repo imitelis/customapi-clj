@@ -1,6 +1,5 @@
 (ns customapi.db.clothes
-  (:require [clojure.set :as set]
-            [customapi.db.core :as dc]
+  (:require [customapi.db.core :as dc]
             [next.jdbc :as jdbc]))
 
 (defn add-cloth [cloth]

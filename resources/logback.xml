@@ -3,7 +3,7 @@
   <!-- Console output for logging -->
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+      <pattern>%highlight([%thread] ~ %-5level:) %d{HH:mm:ss.SSS} - %msg%n</pattern>
     </encoder>
   </appender>
 
@@ -14,6 +14,5 @@
   </root>
 
   <!-- Optionally, set different levels for specific loggers -->
-  <logger name="org.springframework" level="error"/>
-  <logger name="com.some.package" level="info"/>
+  <logger name="customapi.server" level="info"/>
 </configuration>

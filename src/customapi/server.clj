@@ -26,5 +26,4 @@
 
 (defn -main []
   (initialize-db)
-  (println "Starting server on port 3000")
   (jetty/run-jetty #'app {:port 3000, :join? false}))

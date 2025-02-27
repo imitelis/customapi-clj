@@ -1,5 +1,5 @@
 (ns customapi.routes.clothes
-  (:require [customapi.handlers.clothes :as ch]
+  (:require [customapi.controllers.clothes :as cc]
             [customapi.specs.clothes :as cs]))
 
 (def clothes-routes
@@ -8,10 +8,10 @@
 
    ["/"
     {:post {:summary "Add a new cloth"
-            :parameters {:body ::cs/cloth-parameter}
+            :parameters {:body ::cs/cloth-without-uuid}
             :responses {201 {:body nil}
-                        400 {:body {:error string?}}}
-            :handler ch/add-cloth-handler}
+                        404 {:body {:error string?}}}
+            :handler cc/add-cloth-controller}
      #_(:get {:summary "Retrieve clothes"
               :parameters {:body nil}
               :responses {200 {:body {:clothes ::cs/clothes-response-list}}
@@ -21,5 +21,6 @@
    ["/:uuid"
     {:get {:summary "Get a cloth by UUID"
            :parameters {:path {:uuid uuid?}}
-           :responses {200 {:body ::cs/clothes-response}}
-           :handler ch/get-cloth-handler}}]])
+           :responses {200 {:body ::cs/cloth}
+                       400 {:body {:error string?}}}
+           :handler cc/get-cloth-controller}}]])
