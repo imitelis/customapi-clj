@@ -14,7 +14,7 @@
             (dc/add-cloth cloth)
             (response/created "/clothes"))
           (response/bad-request {:error "Cloth is invalid"})))
-      (response/bad-request {:error "Cloth is missing"}))))
+      (response/not-found {:error "Cloth is missing"}))))
 
 (defn get-cloth-controller [request]
   (let [uuid (:uuid (:path-params request))
@@ -24,7 +24,15 @@
         (if (s/valid? ::sc/cloth adapted-cloth)
           (response/response adapted-cloth)
           (response/bad-request {:error "Cloth is invalid"})))
-      (response/bad-request {:error "Cloth not found"}))))
+      (response/not-found {:error "Cloth not found"}))))
+
+(defn delete-cloth-controller [request]
+  (let [uuid (:uuid (:path-params request))
+        cloth (dc/get-a-cloth uuid)]
+    (if cloth
+      (do (dc/delete-a-cloth uuid)
+        {:status 204 :body nil})
+      {:status 404 :body {:error "Cloth not found"}})))
 
 #_((defn get-clothes-handler [request]
      (let [clothes (dc/get-clothes)]

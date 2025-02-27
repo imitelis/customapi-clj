@@ -10,6 +10,7 @@
     {:post {:summary "Add a new cloth"
             :parameters {:body ::cs/cloth-without-uuid}
             :responses {201 {:body nil}
+                        400 {:body {:error string?}}
                         404 {:body {:error string?}}}
             :handler cc/add-cloth-controller}
      #_(:get {:summary "Retrieve clothes"
@@ -22,5 +23,11 @@
     {:get {:summary "Get a cloth by UUID"
            :parameters {:path {:uuid uuid?}}
            :responses {200 {:body ::cs/cloth}
-                       400 {:body {:error string?}}}
-           :handler cc/get-cloth-controller}}]])
+                       400 {:body {:error string?}}
+                       404 {:body {:error string?}}}
+           :handler cc/get-cloth-controller}
+     :delete {:summary "Delete a cloth by UUID"
+              :parameters {:path {:uuid uuid?}}
+              :responses {204 {:body nil}
+                          404 {:body {:error string?}}}
+              :handler cc/delete-cloth-controller}}]])
