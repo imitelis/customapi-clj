@@ -12,8 +12,17 @@
       (nil? new-cloth) (response/bad-request {:error "Cloth is missing"})
       (not valid-cloth) (response/not-found {:error "Cloth is invalid"})
       :else
-      (do (dc/add-cloth new-cloth)
+      (do (dc/add-a-cloth new-cloth)
           (response/created "/clothes")))))
+
+(defn get-clothes-controller [request]
+  (println "debugging from contr")
+  (let [clothes (dc/get-clothes)]
+    (println "debugging" clothes)
+    (if (seq clothes)  ;; Check if clothes is non-empty
+      (do (println "debugging" clothes)
+          (response/response {:body clothes}))
+      {:status 404 :body {:error "Clothes not found"}})))
 
 (defn get-cloth-controller [request]
   (let [uuid (:uuid (:path-params request))
@@ -42,10 +51,3 @@
       (do (dc/patch-a-cloth uuid cloth)
           {:status 200 :body nil})
       {:status 404 :body {:error "Cloth not found"}})))
-
-#_((defn get-clothes-handler [request]
-     (let [clothes (dc/get-clothes)]
-       (if (seq clothes)
-         (do (println "debugging" clothes)
-             (response/response {:body {:clothes clothes}}))
-         (response/not-found "not found")))))

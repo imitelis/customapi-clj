@@ -2,13 +2,17 @@
   (:require [customapi.db.core :as dc]
             [next.jdbc :as jdbc]))
 
-(defn add-cloth [cloth-without-uuid]
+(defn add-a-cloth [cloth-without-uuid]
   (let [cloth-uuid (str (java.util.UUID/randomUUID))
         cloth cloth-without-uuid]
     (jdbc/execute!
      dc/db-spec
      ["INSERT INTO clothes (uuid, name, type, size) VALUES (?, ?, ?, ?)"
       cloth-uuid (:name cloth) (:type cloth) (:size cloth)])))
+
+(defn get-clothes []
+  (let [clothes (jdbc/execute! dc/db-spec ["SELECT * FROM clothes"])] 
+    clothes))
 
 (defn get-a-cloth [uuid]
   (let [result (jdbc/execute! dc/db-spec ["SELECT * FROM clothes WHERE uuid = ?" uuid])]

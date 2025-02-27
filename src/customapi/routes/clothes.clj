@@ -13,11 +13,11 @@
                         400 {:body {:error string?}}
                         404 {:body {:error string?}}}
             :handler cc/add-cloth-controller}
-     #_(:get {:summary "Retrieve clothes"
-              :parameters {:body nil}
-              :responses {200 {:body {:clothes ::cs/clothes-response-list}}
-                          400 {:body {:error string?}}}
-              :handler ch/get-clothes-handler})}]
+     :get {:summary "Get clothes"
+           :parameters {:body nil}
+           :responses {200 {:body ::cs/clothes-response-list}
+                       404 {:body {:error string?}}}
+           :handler cc/get-clothes-controller}}]
 
    ["/:uuid"
     {:get {:summary "Get a cloth by UUID"
