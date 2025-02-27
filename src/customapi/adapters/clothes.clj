@@ -4,4 +4,4 @@
   {:uuid (:clothes/uuid cloth)
    :name (:clothes/name cloth)
    :type (:clothes/type cloth)
-   :size (Long/parseLong (:clothes/size cloth))})
+   :size (Double/parseDouble (:clothes/size cloth))})
