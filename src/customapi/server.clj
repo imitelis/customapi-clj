@@ -1,9 +1,9 @@
 (ns customapi.server
   (:gen-class)
-  (:require [customapi.config.database :refer [initialize-db]]
-            [customapi.config.middleware :refer [use-middleware]]
+  (:require [customapi.config.middleware :refer [use-middleware]]
             [customapi.config.openapi :refer [create-openapi]]
             [customapi.config.swagger :refer [create-swagger]]
+            [customapi.db.core :refer [initialize-db]]
             [customapi.routes.clothes :refer [clothes-routes]]
             [customapi.routes.files :refer [files-routes]]
             [customapi.routes.math :refer [math-routes]]
@@ -15,7 +15,7 @@
   (ring/ring-handler
    (ring/router
     [clothes-routes
-     files-routes 
+     files-routes
      math-routes
      openapi-routes]
     use-middleware)

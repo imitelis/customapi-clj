@@ -1,6 +1,6 @@
 (ns customapi.routes.clothes
-  (:require [customapi.specs.clothes :as cs]
-            [customapi.handlers.clothes :as ch]))
+  (:require [customapi.handlers.clothes :as ch]
+            [customapi.specs.clothes :as cs]))
 
 (def clothes-routes
   ["/clothes"
@@ -9,6 +9,17 @@
    ["/"
     {:post {:summary "Add a new cloth"
             :parameters {:body ::cs/cloth-parameter}
-            :responses {201 {:body nil}  ; 201 Created response
-                        400 {:body {:error string?}}}  ; 400 Bad Request response for invalid data
-            :handler ch/add-cloth-handler}}]])
+            :responses {201 {:body nil}
+                        400 {:body {:error string?}}}
+            :handler ch/add-cloth-handler}
+     #_(:get {:summary "Retrieve clothes"
+              :parameters {:body nil}
+              :responses {200 {:body {:clothes ::cs/clothes-response-list}}
+                          400 {:body {:error string?}}}
+              :handler ch/get-clothes-handler})}]
+
+   ["/:uuid"
+    {:get {:summary "Get a cloth by UUID"
+           :parameters {:path {:uuid uuid?}}
+           :responses {200 {:body ::cs/clothes-response}}
+           :handler ch/get-cloth-handler}}]])
