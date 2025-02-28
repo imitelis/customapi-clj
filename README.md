@@ -4,14 +4,14 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
 
 ## Installation
 
-  *  Check `java` is installed with `java -version` (default version: `openjdk version "21.0.5"`)
-  *  Check `lein` is installed with `lein -version` (default version: `Leiningen 2.11.2 on Java 21.0.5 OpenJDK`)
+  *  Check `java` is installed with `java -version` (`openjdk version "21.0.5"`)
+  *  Check `lein` is installed with `lein -version` (`Leiningen 2.11.2 on Java 21.0.5 OpenJDK`)
   *  Run `lein deps` to install all required dependencies listed in `project.clj`
   *  Run `lein run` to start server at `localhost:3000` by default
 
 ## Usage
 
-  *  Check `docker` is installed with `docker -version` (default version: `Docker version 27.5.1`)
+  *  Check `docker` is installed with `docker -version` (`Docker version 27.5.1`)
   *  Run `lein uberjar` to compile project and get a `/target/uberjar/customapi-0.1.0-standalone.jar` file
   *  Build a docker image for running the `.jar` with `docker build -t customapi .`
   *  Run the docker container afer building its image with `docker run -p 3000:3000 customapi`
@@ -27,10 +27,11 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
 ## Features
 
   *  Logger: Making use of `slf4j` lib and just for chosen logs via `/resources/logback.xml`
-  *  Migrations: Automatically set database tables and connection via `/src/customapi/config/database.clj` 
+  *  Migrations: Automatically set database tables and connection via `/src/customapi/db/core.clj` 
   *  Middlewares: Fully integrated customizable middlewares via `/src/customapi/config/middleware.clj`
   *  Modularity: Segregation of layers; customizable and sustainable folders organization
   *  OpenAPI: Self-documenting and interacteable API endpoints at `localhost:3000/index.html`
+  *  RestAPI: Extendible APIs fulfilling CRUD operations for a `/src/specs/clothes.clj` example schema
 
 ## License
 
