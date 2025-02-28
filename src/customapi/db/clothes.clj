@@ -11,9 +11,16 @@
       cloth-uuid (:name cloth) (:type cloth) (:size cloth)])
     cloth-uuid))
 
-(defn get-clothes []
-  (let [clothes (jdbc/execute! dc/db-spec ["SELECT * FROM clothes"])]
-    clothes))
+(defn get-clothes [clothes-name clothes-type]
+  (let [base-query "SELECT * FROM clothes"
+        query-params (cond-> []
+                       clothes-name (conj ["name LIKE ?" (str "%" clothes-name "%")])
+                       clothes-type (conj ["type LIKE ?" (str "%" clothes-type "%")]))
+        final-query (if (empty? query-params)
+                      base-query
+                      (str base-query " WHERE " (String/join " AND " (map first query-params))))]
+    ;; (println "Final query:" final-query)
+    (jdbc/execute! dc/db-spec (concat [final-query] (map second query-params)))))
 
 (defn get-a-cloth [uuid]
   (let [result (jdbc/execute! dc/db-spec ["SELECT * FROM clothes WHERE uuid = ?" uuid])]

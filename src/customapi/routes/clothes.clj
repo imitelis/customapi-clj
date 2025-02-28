@@ -9,12 +9,12 @@
    ["/"
     {:post {:summary "Add a new cloth"
             :parameters {:body ::cs/cloth-without-uuid}
-            :responses {201 {:body nil}
+            :responses {201 {:body ::cs/cloth}
                         400 {:body {:error string?}}
                         404 {:body {:error string?}}}
             :handler cc/add-cloth-controller}
      :get {:summary "Get clothes"
-           :parameters {:body nil}
+           :parameters {:query ::cs/clothes-query}
            :responses {200 {:body ::cs/clothes}
                        404 {:body {:error string?}}}
            :handler cc/retrieve-clothes-controller}}]

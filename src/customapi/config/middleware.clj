@@ -21,12 +21,14 @@
    muuntaja/format-negotiate-middleware
    ;; encoding response body
    muuntaja/format-response-middleware
+   ;; coercing response body
+   coercion/coerce-response-middleware
+   ;; coercing request body
+   coercion/coerce-request-middleware
    ;; exception handling
    exception/exception-middleware
    ;; decoding request body
    muuntaja/format-request-middleware
-   ;; coercing response bodys
-   coercion/coerce-response-middleware
    ;; logger wrapping
    logger/wrap-with-logger
    ;; json body wrapping

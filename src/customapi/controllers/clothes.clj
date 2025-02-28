@@ -16,12 +16,17 @@
             adapted-cloth (ac/cloth-adapter created-cloth)]
         {:status 201 :body adapted-cloth}))))
 
-(defn retrieve-clothes-controller [_]
-  (let [clothes (dc/get-clothes)
-        adapted-clothes (ac/clothes-adapter clothes)
-        valid-clothes (s/valid? ::sc/clothes adapted-clothes)]
-    (if valid-clothes
-      {:status 200 :body adapted-clothes}
+(defn retrieve-clothes-controller [request]
+  (let [query-params (:query-params request)
+        clothes-name (get query-params "clothes-name")
+        clothes-type (get query-params "clothes-type")
+        clothes (dc/get-clothes clothes-name clothes-type)]
+    (if (seq clothes)
+      (let [adapted-clothes (ac/clothes-adapter clothes)
+            valid-clothes (s/valid? ::sc/clothes adapted-clothes)]
+        (if valid-clothes
+          {:status 200 :body adapted-clothes}
+          {:status 400 :body {:error "Clothes are invalid"}}))
       {:status 404 :body {:error "Clothes not found"}})))
 
 (defn retrieve-cloth-controller [request]
@@ -50,6 +55,6 @@
     (if cloth-in-db
       (do (dc/patch-a-cloth uuid cloth)
           (let [edited-cloth (dc/get-a-cloth uuid)
-                adapted-cloth (ac/cloth-adapter edited-cloth)] 
+                adapted-cloth (ac/cloth-adapter edited-cloth)]
             {:status 200 :body adapted-cloth}))
       {:status 404 :body {:error "Cloth not found"}})))
