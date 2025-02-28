@@ -31,7 +31,7 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
   *  Middlewares: Fully integrated customizable middlewares via `/src/customapi/config/middleware.clj`
   *  Modularity: Segregation of layers; customizable and sustainable folders organization
   *  OpenAPI: Self-documenting and interacteable API endpoints at `localhost:3000/index.html`
-  *  RestAPI: Extendible APIs fulfilling CRUD operations for a `/src/specs/clothes.clj` example schema
+  *  RestAPI: Resftul API endpoints fulfilling CRUD operations for a `/src/specs/clothes.clj` schema
 
 ## License
 
