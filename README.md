@@ -22,13 +22,14 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
   *  `lein deps`: Check project dependencies and install them
   *  `lein clean`: Clean dependencies libraries and cache
   *  `lein lint`: Lint `clojure` code and fix linting issues
+  *  `lein test`: Run project unit and integration tests
   *  `lein uberjar`: Compile project into a portable `.jar` file
 
 ## Features
 
-  *  Logger: Making use of `slf4j` lib and just for chosen logs via `/resources/logback.xml`
+  *  Logger: Making use of `slf4j` logs and just for specified ones via `/resources/logback.xml`
   *  Migrations: Automatically set database tables and connection via `/src/customapi/db/core.clj` 
-  *  Middlewares: Fully integrated customizable middlewares via `/src/customapi/config/middleware.clj`
+  *  Middlewares: Fully integrated pickeable middlewares via `/src/customapi/config/middleware.clj`
   *  Modularity: Segregation of layers; customizable and sustainable folders organization
   *  OpenAPI: Self-documenting and interacteable API endpoints at `localhost:3000/index.html`
   *  RestAPI: Resftul API endpoints fulfilling CRUD operations for a `/src/specs/clothes.clj` schema
