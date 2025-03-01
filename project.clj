@@ -26,7 +26,8 @@
   :aot [customapi.server]
   :target-path "target/%s" 
   :repl-options {:init-ns customapi.server}
-  :aliases {"lint" ["do" ["cljfmt" "fix"] ["nsorg" "--replace"]]}
+  :aliases {"lint"     ["do" ["cljfmt" "check"] ["nsorg"] ["kibit"]]
+            "lint-fix" ["do" ["cljfmt" "fix"] ["nsorg" "--replace"]]}
   :plugins [[lein-nsorg "0.3.0" :exclusions [org.clojure/clojure]]
             [lein-cljfmt "0.6.4" :exclusions [org.clojure/clojure]]]
   :profiles {:uberjar {:aot :all
