@@ -29,9 +29,9 @@
    exception/exception-middleware
    ;; decoding request body
    muuntaja/format-request-middleware
-   ;; logger wrapping
+   ;; logger wrapper
    logger/wrap-with-logger
-   ;; json body wrapping
+   ;; json body wrapper
    json/wrap-json-body
    ;; multipart middleware
    multipart/multipart-middleware])

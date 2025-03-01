@@ -1,7 +1,8 @@
 (ns customapi.server
   (:gen-class)
   (:require [customapi.config.middleware :refer [use-middleware]]
-            [customapi.config.openapi :refer [create-openapi]]
+            [customapi.config.openapi :refer [create-openapi]] 
+            [customapi.config.secrets :refer [secrets]]
             [customapi.config.swagger :refer [create-swagger]]
             [customapi.db.core :refer [initialize-db]]
             [customapi.routes.clothes :refer [clothes-routes]]
@@ -26,4 +27,4 @@
 
 (defn -main []
   (initialize-db)
-  (jetty/run-jetty #'app {:port 3000, :join? false}))
+  (jetty/run-jetty #'app {:host (:host secrets), :port (:port secrets), :join? false}))

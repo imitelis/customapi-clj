@@ -1,7 +1,10 @@
 (ns customapi.db.core
-  (:require [next.jdbc :as jdbc]))
+  (:require [next.jdbc :as jdbc]
+            [customapi.config.secrets :refer [secrets]]))
 
-(def db-spec {:dbtype "sqlite" :dbname "clothes.db"})
+(def db-spec
+  {:dbtype (:db-type secrets)
+   :dbname (:db-name secrets)})
 
 (defn create-tables []
   (jdbc/execute! db-spec
