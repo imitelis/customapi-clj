@@ -1,5 +1,6 @@
 (ns customapi.config.middleware
   (:require
+   [customapi.config.secrets :refer [secrets]]
    [muuntaja.core :as muuntaja-core]
    [reitit.coercion.spec :as coercion-spec]
    [reitit.dev.pretty :as pretty]
@@ -10,7 +11,14 @@
    [reitit.ring.middleware.parameters :as parameters]
    [reitit.swagger :as swagger]
    [ring.logger :as logger]
+   [ring.middleware.cors :refer [wrap-cors]]
    [ring.middleware.json :as json]))
+
+(defn wrap-cors-middleware [handler]
+  (wrap-cors handler
+             :access-control-allow-origin (:allowed-origin secrets)
+             :access-control-allow-host (:allowed-host secrets)
+             :access-control-allow-methods [:get :post :patch :delete]))
 
 (def set-middleware
   [;; swagger feature
@@ -33,6 +41,8 @@
    logger/wrap-with-logger
    ;; json body wrapper
    json/wrap-json-body
+   ;; cors wrapper
+   wrap-cors-middleware
    ;; multipart middleware
    multipart/multipart-middleware])
 

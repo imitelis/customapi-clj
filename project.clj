@@ -13,6 +13,7 @@
                  [ring/ring-mock "0.4.0"]
                  [ring/ring-json "0.5.1"] 
                  [ring/ring-jetty-adapter "1.12.1"]
+                 [ring-cors/ring-cors "0.1.13"]
                  [ring-logger/ring-logger "1.1.1"]
                  [metosin/malli "0.10.0"]
                  [metosin/reitit "0.8.0-alpha1"]

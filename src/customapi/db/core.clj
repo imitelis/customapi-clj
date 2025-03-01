@@ -1,6 +1,6 @@
 (ns customapi.db.core
-  (:require [next.jdbc :as jdbc]
-            [customapi.config.secrets :refer [secrets]]))
+  (:require [customapi.config.secrets :refer [secrets]]
+            [next.jdbc :as jdbc]))
 
 (def db-spec
   {:dbtype (:db-type secrets)
