@@ -1,4 +1,4 @@
-(ns customapi.config.middleware
+(ns customapi.config.middlewares
   (:require
    [customapi.config.secrets :refer [secrets]]
    [muuntaja.core :as muuntaja-core]
@@ -14,13 +14,20 @@
    [ring.middleware.cors :refer [wrap-cors]]
    [ring.middleware.json :as json]))
 
+(defn authentication-middleware [handler]
+  (fn [request]
+    (let [api-key (get-in request [:headers "api-key"])]
+      (if (= api-key "secret")
+        (handler request)
+        {:status 401 :error "Unauthorized"}))))
+
 (defn wrap-cors-middleware [handler]
   (wrap-cors handler
              :access-control-allow-origin (:allowed-origin secrets)
              :access-control-allow-host (:allowed-host secrets)
              :access-control-allow-methods [:get :post :patch :delete]))
 
-(def set-middleware
+(def set-middlewares
   [;; swagger feature
    swagger/swagger-feature
    ;; query-params & form-params
@@ -46,11 +53,11 @@
    ;; multipart middleware
    multipart/multipart-middleware])
 
-(def use-middleware
+(def use-middlewares
   {;;:reitit.middleware/transform dev/print-request-diffs ;; pretty diffs
    ;;:validate spec/validate ;; enable spec validation for route data
    ;;:reitit.spec/wrap spell/closed ;; strict top-level validation
    :exception pretty/exception
    :data {:coercion coercion-spec/coercion
           :muuntaja muuntaja-core/instance
-          :middleware set-middleware}})
+          :middleware set-middlewares}})

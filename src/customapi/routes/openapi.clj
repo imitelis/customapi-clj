@@ -11,5 +11,8 @@
     {:get {:no-doc true
            :openapi {:info {:title "Custom API"
                             :description "OpenAPI3-docs with reitit-http"
-                            :version "0.0.1"}}
+                            :version "0.0.1"}
+                     :components {:securitySchemes {"auth" {:type :apiKey
+                                                            :in :header
+                                                            :name "Example Api-Key"}}}}
            :handler (openapi/create-openapi-handler)}}]])

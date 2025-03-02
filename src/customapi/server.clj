@@ -1,7 +1,7 @@
 (ns customapi.server
   (:gen-class)
-  (:require [customapi.config.secrets :refer [secrets]]
-            [customapi.config.docs-handler :refer [docs-handler]]
+  (:require [customapi.config.docs-handler :refer [docs-handler]]
+            [customapi.config.secrets :refer [secrets]]
             [customapi.db.core :refer [initialize-db]]
             [customapi.routes.core :refer [routes]]
             [reitit.ring :as ring]
