@@ -16,7 +16,7 @@
 
 (defn authentication-middleware [handler]
   (fn [request]
-    (let [api-key (get-in request [:headers "api-key"])]
+    (let [api-key (get-in request [:headers "example-api-key"])]
       (if (= api-key "secret")
         (handler request)
         {:status 401 :error "Unauthorized"}))))

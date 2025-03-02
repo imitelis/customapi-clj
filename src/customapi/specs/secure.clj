@@ -1,4 +1,4 @@
-(ns customapi.specs.secure
-  (:require [clojure.spec.alpha :as s]))
+(ns customapi.specs.secure)
 
-(s/def ::message string?)
+(def Message 
+  {:message string?})

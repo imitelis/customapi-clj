@@ -14,5 +14,5 @@
                             :version "0.0.1"}
                      :components {:securitySchemes {"auth" {:type :apiKey
                                                             :in :header
-                                                            :name "Example Api-Key"}}}}
+                                                            :name "Example-Api-Key"}}}}
            :handler (openapi/create-openapi-handler)}}]])

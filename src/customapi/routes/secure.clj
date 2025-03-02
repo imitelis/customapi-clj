@@ -12,5 +12,5 @@
    ["/message"
     {:get {:summary "get a message"
            :parameters {:body nil}
-           :responses {200 {:body ::ss/message}}
+           :responses {200 {:body ss/Message}}
            :handler hs/get-message-handler}}]])
