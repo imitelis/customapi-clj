@@ -2,7 +2,7 @@
   (:gen-class)
   (:require [customapi.config.docs-handler :refer [docs-handler]]
             [customapi.config.secrets :refer [secrets]]
-            [customapi.db.core :refer [initialize-db]]
+            [customapi.db.core :refer [initialize-db!]]
             [customapi.routes.core :refer [routes]]
             [reitit.ring :as ring]
             [ring.adapter.jetty :as jetty]))
@@ -13,5 +13,5 @@
    docs-handler))
 
 (defn -main []
-  (initialize-db)
+  (initialize-db!)
   (jetty/run-jetty #'app {:host (:host secrets), :port (:port secrets), :join? false}))
