@@ -1,15 +1,15 @@
 (ns customapi.routes.files
   (:require [clojure.java.io :as io]
-            [customapi.specs.files :as fs]))
+            [reitit.ring.malli :as rm]))
 
 (def files-routes
   ["/files"
-   {:tags ["files"]}
+   {:tags #{"files"}}
 
    ["/upload"
     {:post {:summary "upload a file"
-            :parameters {:multipart ::fs/file-params}
-            :responses {200 {:body ::fs/file-response}}
+            :parameters {:multipart [:map [:file rm/temp-file-part]]}
+            :responses {200 {:body [:map [:name string?] [:size int?]]}}
             :handler (fn [{{{:keys [file]} :multipart} :parameters}]
                        {:status 200
                         :body {:name (:filename file)
@@ -23,5 +23,6 @@
            :handler (fn [_]
                       {:status 200
                        :headers {"Content-Type" "image/png"}
-                       :body (io/input-stream
-                              (io/resource "reitit.png"))})}}]])
+                       :body (-> "reitit.png"
+                                 (io/resource)
+                                 (io/input-stream))})}}]])

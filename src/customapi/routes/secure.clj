@@ -1,16 +1,18 @@
-(ns customapi.routes.secure
-  (:require [customapi.config.middlewares :as md]
-            [customapi.handlers.secure :as hs]
-            [customapi.specs.secure :as ss]))
+(ns customapi.routes.secure)
 
 (def secure-routes
   ["/secure"
-   {:tags ["secure"]
+   {:tags #{"secure"}
     :openapi {:security [{"auth" []}]}
-    :middleware [md/authentication-middleware]}
-
-   ["/message"
-    {:get {:summary "get a message"
-           :parameters {:body nil}
-           :responses {200 {:body ss/Message}}
-           :handler hs/get-message-handler}}]])
+    :swagger {:security [{"auth" []}]}}
+   ["/get"
+    {:get {:summary "endpoint authenticated with a header"
+           :responses {200 {:body [:map [:secret :string]]}
+                       401 {:body [:map [:error :string]]}}
+           :handler (fn [request]
+                      ;; In a real app authentication would be handled by middleware
+                      (if (= "secret" (get-in request [:headers "example-api-key"]))
+                        {:status 200
+                         :body {:secret "I am a marmot"}}
+                        {:status 401
+                         :body {:error "unauthorized"}}))}}]])
