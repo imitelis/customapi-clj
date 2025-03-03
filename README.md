@@ -35,7 +35,7 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
   *  Secrets: Dynamically pass secrets and config as an EDN file at `/config.edn`
   *  OAuth: Authentication middleware for secured API endpoints via `/src/customapi/config/middlewares.clj`
   *  OpenAPI: Self-documenting and interacteable API endpoints at `localhost:3000/index.html`
-  *  RestAPI: Resftul API endpoints fulfilling CRUD operations for a `/src/specs/clothes.clj` schema
+  *  RestAPI: Resftul API endpoints fulfilling CRUD operations for a `/src/schemas/clothes.clj` schema
 
 ## License
 
