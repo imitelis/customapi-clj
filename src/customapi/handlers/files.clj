@@ -11,6 +11,6 @@
   (fn [_]
     {:status 200
      :headers {"Content-Type" "image/png"}
-     :body (-> "/meme.png"
+     :body (-> "/picture.png"
                (io/resource)
                (io/input-stream))}))

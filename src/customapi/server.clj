@@ -3,6 +3,7 @@
             [customapi.config.secrets :refer [secrets]]
             [customapi.config.middlewares :refer [middlewares]]
             [customapi.routes.core :refer [routes]]
+            [customapi.db.core :refer [initialize-db!]]
             [reitit.ring :as ring]
             [ring.adapter.jetty :as jetty]))
 
@@ -14,4 +15,5 @@
    docs))
 
 (defn -main []
+  (initialize-db!)
   (jetty/run-jetty #'app {:host (:host secrets), :port (:port secrets), :join? false}))

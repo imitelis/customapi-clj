@@ -17,7 +17,9 @@
                  [ring-logger/ring-logger "1.1.1"]
                  [javax.servlet/servlet-api "2.5"]
                  [ch.qos.logback/logback-classic "1.2.6"]
-                 [org.apache.commons/commons-fileupload2-core "2.0.0-M2"]]
+                 [com.github.seancorfield/next.jdbc "1.3.994"]
+                 [org.apache.commons/commons-fileupload2-core "2.0.0-M2"] 
+                 ]
   :main customapi.server
   :aot [customapi.server]
   :target-path "target/%s" 
