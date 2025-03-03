@@ -1,5 +1,6 @@
 (ns customapi.server
   (:require [customapi.config.docs :refer [docs]]
+            [customapi.config.secrets :refer [secrets]]
             [customapi.config.middlewares :refer [middlewares]]
             [customapi.routes.core :refer [routes]]
             [reitit.ring :as ring]
@@ -13,4 +14,4 @@
    docs))
 
 (defn -main []
-  (jetty/run-jetty #'app {:port 3000, :join? false}))
+  (jetty/run-jetty #'app {:host (:host secrets), :port (:port secrets), :join? false}))

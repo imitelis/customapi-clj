@@ -13,7 +13,15 @@
             ;; [reitit.ring.middleware.dev :as dev]
             [reitit.ring.spec :as ring-spec]
             [reitit.swagger :as swagger]
-            [ring.logger :as logger]))
+            [ring.logger :as logger]
+            [ring.middleware.cors :as cors]
+            [customapi.config.secrets :refer [secrets]]))
+
+(defn wrap-cors-middleware [handler]
+  (cors/wrap-cors handler
+             :access-control-allow-origin (:allowed-origin secrets)
+             :access-control-allow-host (:allowed-host secrets)
+             :access-control-allow-methods [:get :post :patch :delete]))
 
 (def middlewares
   {;;:reitit.middleware/transform dev/print-request-diffs ;; pretty diffs
@@ -24,37 +32,38 @@
           (coercion-malli/create
            {;; set of keys to include in error messages 
             :error-keys #{#_:type :coercion :in :schema :value :errors :humanized #_:transformed}
-                      ;; schema identity function (default: close all map schemas)
+            ;; schema identity function (default: close all map schemas)
             :compile mu/closed-schema
-                      ;; strip-extra-keys (affects only predefined transformers)
+            ;; strip-extra-keys (affects only predefined transformers)
             :strip-extra-keys true
-                      ;; add/set default values
+            ;; add/set default values
             :default-values true
-                      ;; malli options
+            ;; malli options
             :options nil})
           :muuntaja mc/instance
           :middleware
-          [;; swagger & openapi
+          [;; swagger feature
            swagger/swagger-feature
+           ;; openapi feature
            openapi/openapi-feature
-                       ;; query-params & form-params
+           ;; query-params & form-params
            parameters/parameters-middleware
-                       ;; content-negotiation
+           ;; content-negotiation
            muuntaja/format-negotiate-middleware
-                       ;; encoding response body
+           ;; encoding response body
            muuntaja/format-response-middleware
-                       ;; exception handling
+           ;; exception handling
            exception/exception-middleware
-                       ;; decoding request body
+           ;; decoding request body
            muuntaja/format-request-middleware
-                       ;; coercing response bodys
+           ;; coercing response bodys
            coercion/coerce-response-middleware
-                       ;; coercing request parameters
+           ;; coercing request parameters
            coercion/coerce-request-middleware
-                       ;; multipart
+           ;; multipart middleware
            multipart/multipart-middleware
-                       ;;
+           ;; logger wrapper
            logger/wrap-with-logger
-
-         ]}})
+           ;; cors wrapper
+           wrap-cors-middleware]}})
 
