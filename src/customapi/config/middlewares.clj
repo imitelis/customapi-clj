@@ -20,8 +20,7 @@
 (defn wrap-cors-middleware [handler]
   (cors/wrap-cors handler
              :access-control-allow-origin (:allowed-origin secrets)
-             :access-control-allow-host (:allowed-host secrets)
-             :access-control-allow-methods [:get :post :patch :delete]))
+             :access-control-allow-host (:allowed-host secrets)))
 
 (def middlewares
   {;;:reitit.middleware/transform dev/print-request-diffs ;; pretty diffs
@@ -65,5 +64,6 @@
            ;; logger wrapper
            logger/wrap-with-logger
            ;; cors wrapper
-           wrap-cors-middleware]}})
+           ;; wrap-cors-middleware
+           ]}})
 
