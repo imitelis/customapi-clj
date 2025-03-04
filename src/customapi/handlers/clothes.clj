@@ -1,8 +1,8 @@
 (ns customapi.handlers.clothes
-  (:require [malli.core :as m]
-            [customapi.adapters.clothes :as ac]
+  (:require [customapi.adapters.clothes :as ac]
             [customapi.db.clothes :as dc]
-            [customapi.schemas.clothes :as sc]))
+            [customapi.schemas.clothes :as sc]
+            [malli.core :as m]))
 
 (defn add-cloth-handler [request]
   (let [new-cloth (:body-params request)
@@ -22,13 +22,11 @@
         clothes-type (get query-params "clothes-type")
         clothes (dc/get-clothes! clothes-name clothes-type)]
     (if (seq clothes)
-      (do
-        (println clothes-name)
-        (let [adapted-clothes (ac/clothes-adapter clothes)
-              valid-clothes (m/validate sc/clothes adapted-clothes)]
-          (if valid-clothes
-            {:status 200 :body adapted-clothes}
-            {:status 400 :body {:error "Clothes are invalid"}})))
+      (let [adapted-clothes (ac/clothes-adapter clothes)
+            valid-clothes (m/validate sc/clothes adapted-clothes)]
+        (if valid-clothes
+          {:status 200 :body adapted-clothes}
+          {:status 400 :body {:error "Clothes are invalid"}}))
       {:status 404 :body {:error "Clothes not found"}})))
 
 (defn retrieve-cloth-handler [request]

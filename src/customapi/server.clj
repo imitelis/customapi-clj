@@ -1,9 +1,9 @@
 (ns customapi.server
   (:require [customapi.config.docs :refer [docs]]
-            [customapi.config.secrets :refer [secrets]]
             [customapi.config.middlewares :refer [middlewares]]
-            [customapi.routes.core :refer [routes]]
+            [customapi.config.secrets :refer [secrets]]
             [customapi.db.core :refer [initialize-db!]]
+            [customapi.routes.core :refer [routes]]
             [reitit.ring :as ring]
             [ring.adapter.jetty :as jetty]))
 

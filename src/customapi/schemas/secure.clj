@@ -1,7 +1,9 @@
 (ns customapi.schemas.secure)
 
 (def error-response
-  {:error string?})
+  [:map
+   [:error string?]])
 
 (def secret-response
-  {:secret string?})
+  [:map
+   [:message string?]])

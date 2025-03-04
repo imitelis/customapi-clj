@@ -11,6 +11,8 @@
                     :securityDefinitions {"auth" {:type :apiKey
                                                   :in :header
                                                   :name "Example-Api-Key"}}
-                    :tags [{:name "files", :description "file api"}
-                           {:name "math", :description "math api"}]}
+                    :tags [{:name "clothes", :description "clothes api"}
+                           {:name "files", :description "file api"}
+                           {:name "math", :description "math api"}
+                           {:name "secure", :description "secure api"}]}
           :handler (swagger/create-swagger-handler)}}])
