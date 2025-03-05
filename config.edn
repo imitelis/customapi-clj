@@ -3,4 +3,5 @@
  :host "0.0.0.0"
  :port 3000
  :allowed-host "localhost"
- :allowed-origin "http://localhost:3000"}
+ :allowed-origin "http://localhost:3000"
+ :jwt-key "your-secret-key"}

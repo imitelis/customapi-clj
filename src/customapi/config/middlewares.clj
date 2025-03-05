@@ -2,6 +2,7 @@
   (:require [customapi.config.secrets :refer [secrets]]
             [malli.util :as mu]
             [muuntaja.core :as mc]
+            [buddy.sign.jwt :as jwt]
             ;; [spec-tools.spell :as spell]
             [reitit.coercion.malli :as coercion-malli]
             [reitit.dev.pretty :as pretty]
@@ -19,10 +20,17 @@
 
 (defn authentication-middleware [handler]
   (fn [request]
-    (let [api-key (get-in request [:headers "example-api-key"])]
-      (if (= api-key "secret")
-        (handler request)
-        {:status 401 :body {:error "unauthorized"}}))))
+    (let [auth-header (get-in request [:headers "auth-api-header"])]
+      (if auth-header
+        (try
+          (let [payload (jwt/unsign auth-header (:jwt-key secrets) {:alg :hs256})]
+            (if payload
+              (handler request)
+              {:status 401 :body {:error "unauthorized"}}))
+          (catch Exception _
+            {:status 401 :body {:error "unauthorized"}}))
+        {:status 400 :body {:error "missing header"}}))))
+        
 
 (defn wrap-cors-middleware [handler]
   (cors/wrap-cors handler

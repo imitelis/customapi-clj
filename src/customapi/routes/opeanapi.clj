@@ -10,5 +10,5 @@
                     ;; used in /secure APIs below
                     :components {:securitySchemes {"auth" {:type :apiKey
                                                            :in :header
-                                                           :name "Example-Api-Key"}}}}
+                                                           :name "auth-api-header"}}}}
           :handler (oa/create-openapi-handler)}}])
