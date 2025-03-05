@@ -4,8 +4,8 @@
 (def swagger-routes
   ["/swagger.json"
    {:get {:no-doc true
-          :swagger {:info {:title "my-api"
-                           :description "swagger docs with [malli](https://github.com/metosin/malli) and reitit-ring"
+          :swagger {:info {:title "CustomAPI"
+                           :description "Swagger-docs with reitit-http"
                            :version "0.0.1"}
                            ;; used in /secure APIs below
                     :securityDefinitions {"auth" {:type :apiKey

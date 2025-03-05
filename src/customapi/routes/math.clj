@@ -8,11 +8,11 @@
    {:tags #{"math"}}
 
    ["/plus"
-    {:get {:summary "plus with malli query parameters"
+    {:get {:summary "plus with query parameters"
            :parameters {:query sm/two-ope-params}
            :responses {200 {:body sm/total-response}}
            :handler hm/plus-query-handler}
-     :post {:summary "plus with malli body parameters"
+     :post {:summary "plus with body parameters"
             :parameters {:body sm/two-ope-params}
             :responses {200 {:body sm/total-response}}
             :handler hm/plus-body-handler}}]])

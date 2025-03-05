@@ -3,10 +3,7 @@
   :url "http://example.com/FIXME"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
-  :dependencies [[org.slf4j/slf4j-api "1.7.32"]
-                 [org.xerial/sqlite-jdbc "3.39.2.0"]
-                 [org.clojure/clojure "1.11.2"]
-                 [org.clojure/java.jdbc "0.7.12"]
+  :dependencies [[buddy/buddy-sign "3.4.1"]
                  [metosin/reitit "0.8.0-alpha1"]
                  [metosin/jsonista "0.3.8"]
                  [metosin/ring-swagger-ui "5.9.0"] 
@@ -17,7 +14,11 @@
                  [ring-logger/ring-logger "1.1.1"]
                  [javax.servlet/servlet-api "2.5"]
                  [ch.qos.logback/logback-classic "1.2.6"]
-                 [com.github.seancorfield/next.jdbc "1.3.994"]
+                 [com.github.seancorfield/next.jdbc "1.3.994"] 
+                 [org.clojure/clojure "1.11.2"]
+                 [org.clojure/java.jdbc "0.7.12"]
+                 [org.slf4j/slf4j-api "1.7.32"]
+                 [org.xerial/sqlite-jdbc "3.39.2.0"]
                  [org.apache.commons/commons-fileupload2-core "2.0.0-M2"] 
                  ]
   :main customapi.server
