@@ -4,6 +4,6 @@
   [:map
    [:error string?]])
 
-(def secret-response
+(def message-response
   [:map
    [:message string?]])

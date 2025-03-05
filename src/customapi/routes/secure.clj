@@ -9,8 +9,15 @@
     :openapi {:security [{"auth" []}]}
     :swagger {:security [{"auth" []}]}
     :middleware [cm/authentication-middleware]}
+
    ["/secret"
     {:get {:summary "endpoint authenticated with a header"
-           :responses {200 {:body ss/secret-response}
+           :responses {200 {:body ss/message-response}
                        401 {:body ss/error-response}}
-           :handler hs/secure-handler}}]])
+           :handler hs/secure-handler}}]
+
+   ["/greeting"
+    {:get {:summary "endpoint authenticated with a header"
+           :responses {200 {:body ss/message-response}
+                       401 {:body ss/error-response}}
+           :handler hs/greeting-handler}}]])

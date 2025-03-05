@@ -1,8 +1,8 @@
 (ns customapi.config.middlewares
-  (:require [customapi.config.secrets :refer [secrets]]
+  (:require [buddy.sign.jwt :as jwt]
+            [customapi.config.secrets :refer [secrets]]
             [malli.util :as mu]
             [muuntaja.core :as mc]
-            [buddy.sign.jwt :as jwt]
             ;; [spec-tools.spell :as spell]
             [reitit.coercion.malli :as coercion-malli]
             [reitit.dev.pretty :as pretty]
@@ -30,7 +30,6 @@
           (catch Exception _
             {:status 401 :body {:error "unauthorized"}}))
         {:status 400 :body {:error "missing header"}}))))
-        
 
 (defn wrap-cors-middleware [handler]
   (cors/wrap-cors handler
