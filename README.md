@@ -23,7 +23,8 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
   *  `lein clean`: Clean dependencies libraries and cache
   *  `lein lint`: Spot `clojure` code from linting issues
   *  `lein lint-fix`: Fix `clojure` code from linting issues
-  *  `lein test`: Run project unit and integration tests
+  *  `lein test`: Run whole project unit and integration tests
+  *  `lein test :ns`: Run an specific test passing its namespace
   *  `lein uberjar`: Compile project into a portable `.jar` file
 
 ## Features
@@ -33,9 +34,11 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
   *  Middlewares: Fully integrated pickeable middlewares via `/src/customapi/config/middlewares.clj`
   *  Modularity: Segregation of layers; customizable and sustainable folders organization
   *  Secrets: Dynamically pass secrets and config as an EDN file at `/config.edn`
-  *  OAuth: Authentication middleware for secured API endpoints via `/src/customapi/config/middlewares.clj`
+  *  JWT: Encrypt JSONs in tokens and then decrypt them for authentication via `/src/customapi/config/jwt.clj`
+  *  OAuth: Middleware for secured API endpoints with interactive `auth-header` via `/src/customapi/config/middlewares.clj`
   *  OpenAPI: Self-documenting and interacteable API endpoints at `localhost:3000/index.html`
-  *  RestAPI: Resftul API endpoints fulfilling CRUD operations for a `/src/schemas/clothes.clj` schema
+  *  RestAPI: Resftul API endpoints fulfilling CRUD operations for a `/src/customapi/schemas/clothes.clj` schema
+  *  Tests: Validate `schemas` with unit tests and `routes` with integration tests via `/test/customapi` folders
 
 ## License
 

@@ -10,7 +10,7 @@
                            ;; used in /secure APIs below
                     :securityDefinitions {"auth" {:type :apiKey
                                                   :in :header
-                                                  :name "auth-api-header"}}
+                                                  :name "auth-header"}}
                     :tags [{:name "clothes", :description "clothes api"}
                            {:name "files", :description "file api"}
                            {:name "math", :description "math api"}

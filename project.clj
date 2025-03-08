@@ -16,11 +16,11 @@
                  [ch.qos.logback/logback-classic "1.2.6"]
                  [com.github.seancorfield/next.jdbc "1.3.994"] 
                  [org.clojure/clojure "1.11.2"]
+                 [org.clojure/data.json "2.5.1"]
                  [org.clojure/java.jdbc "0.7.12"]
                  [org.slf4j/slf4j-api "1.7.32"]
                  [org.xerial/sqlite-jdbc "3.39.2.0"]
-                 [org.apache.commons/commons-fileupload2-core "2.0.0-M2"] 
-                 ]
+                 [org.apache.commons/commons-fileupload2-core "2.0.0-M2"]]
   :main customapi.server
   :aot [customapi.server]
   :target-path "target/%s" 

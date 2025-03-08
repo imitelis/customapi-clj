@@ -6,14 +6,14 @@
   ["/files"
    {:tags #{"files"}}
 
-   ["/upload"
-    {:post {:summary "upload a file"
+   ["/data"
+    {:post {:summary "Read data from a file"
             :parameters {:multipart sf/upload-params}
             :responses {200 {:body sf/upload-response}}
             :handler hf/upload-handler}}]
 
    ["/download"
-    {:get {:summary "downloads a file"
+    {:get {:summary "Download a file"
            :swagger {:produces ["image/png"]}
            :responses {200 {:description "an image"
                             :content {"image/png" {:schema string?}}}}

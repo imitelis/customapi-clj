@@ -1,5 +1,5 @@
 (ns customapi.config.middlewares
-  (:require [buddy.sign.jwt :as jwt]
+  (:require [customapi.config.jwt :refer [jwt-unsign]]
             [customapi.config.secrets :refer [secrets]]
             [malli.util :as mu]
             [muuntaja.core :as mc]
@@ -20,10 +20,10 @@
 
 (defn authentication-middleware [handler]
   (fn [request]
-    (let [auth-header (get-in request [:headers "auth-api-header"])]
+    (let [auth-header (get-in request [:headers "auth-header"])]
       (if auth-header
         (try
-          (let [payload (jwt/unsign auth-header (:jwt-key secrets) {:alg :hs256})]
+          (let [payload (jwt-unsign auth-header)]
             (if payload
               (handler request)
               {:status 401 :body {:error "unauthorized"}}))
