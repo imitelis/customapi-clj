@@ -9,12 +9,12 @@
 
    ["/login"
     {:post {:summary "login with login params"
-            :parameters {:body sa/login-params}
-            :responses {200 {:body sa/login-response}}
+            :parameters {:body sa/LoginParams}
+            :responses {200 {:body sa/LoginResponse}}
             :handler ha/login-handler}}]
    ["/validate"
     {:get {:summary "get auth with token params"
-           :parameters {:query sa/auth-param}
-           :responses {200 {:body sa/auth-response}
-                       401 {:body sa/error}}
+           :parameters {:query sa/AuthParam}
+           :responses {200 {:body sa/AuthResponse}
+                       401 {:body sa/Error}}
            :handler ha/auth-handler}}]])

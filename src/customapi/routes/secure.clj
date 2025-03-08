@@ -12,12 +12,12 @@
 
    ["/secret"
     {:get {:summary "endpoint authenticated with a header"
-           :responses {200 {:body ss/message-response}
-                       401 {:body ss/error-response}}
+           :responses {200 {:body ss/MessageResponse}
+                       401 {:body ss/ErrorResponse}}
            :handler hs/secure-handler}}]
 
    ["/greeting"
     {:get {:summary "endpoint authenticated with a header"
-           :responses {200 {:body ss/message-response}
-                       401 {:body ss/error-response}}
+           :responses {200 {:body ss/MessageResponse}
+                       401 {:body ss/ErrorResponse}}
            :handler hs/greeting-handler}}]])

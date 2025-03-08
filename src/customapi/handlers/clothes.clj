@@ -6,7 +6,7 @@
 
 (defn add-cloth-handler [request]
   (let [new-cloth (:body-params request)
-        valid-cloth (m/validate sc/cloth-without-uuid new-cloth)]
+        valid-cloth (m/validate sc/ClothWithoutUuid new-cloth)]
     (cond
       (nil? new-cloth) {:status 404 :body {:error "Cloth is missing"}}
       (not valid-cloth) {:status 400 :body {:error "Cloth is invalid"}}
@@ -23,7 +23,7 @@
         clothes (dc/get-clothes! clothes-name clothes-type)]
     (if (seq clothes)
       (let [adapted-clothes (ac/clothes-adapter clothes)
-            valid-clothes (m/validate sc/clothes adapted-clothes)]
+            valid-clothes (m/validate sc/Clothes adapted-clothes)]
         (if valid-clothes
           {:status 200 :body adapted-clothes}
           {:status 400 :body {:error "Clothes are invalid"}}))
@@ -35,7 +35,7 @@
     (if (not cloth-in-db)
       {:status 404 :body {:error "Cloth not found"}}
       (let [adapted-cloth (ac/cloth-adapter cloth-in-db)
-            valid-cloth (m/validate sc/cloth adapted-cloth)]
+            valid-cloth (m/validate sc/Cloth adapted-cloth)]
         (cond
           (not valid-cloth) {:status 400 :body {:error "Cloth is invalid"}}
           :else {:status 200 :body adapted-cloth})))))

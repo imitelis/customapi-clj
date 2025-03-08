@@ -8,8 +8,8 @@
 
    ["/data"
     {:post {:summary "Read data from a file"
-            :parameters {:multipart sf/upload-params}
-            :responses {200 {:body sf/upload-response}}
+            :parameters {:multipart sf/UploadParams}
+            :responses {200 {:body sf/UploadResponse}}
             :handler hf/upload-handler}}]
 
    ["/download"

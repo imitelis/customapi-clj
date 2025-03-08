@@ -1,8 +1,8 @@
 (ns customapi.schemas.files
   (:require [reitit.ring.malli :as rm]))
 
-(def upload-params
+(def UploadParams
   [:map [:file rm/temp-file-part]])
 
-(def upload-response
+(def UploadResponse
   [:map [:name string?] [:size int?]])

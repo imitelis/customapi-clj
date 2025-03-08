@@ -9,10 +9,10 @@
 
    ["/plus"
     {:get {:summary "plus with query parameters"
-           :parameters {:query sm/two-ope-params}
-           :responses {200 {:body sm/total-response}}
+           :parameters {:query sm/TwoOpParams}
+           :responses {200 {:body sm/TotalResponse}}
            :handler hm/plus-query-handler}
      :post {:summary "plus with body parameters"
-            :parameters {:body sm/two-ope-params}
-            :responses {200 {:body sm/total-response}}
+            :parameters {:body sm/TwoOpParams}
+            :responses {200 {:body sm/TotalResponse}}
             :handler hm/plus-body-handler}}]])

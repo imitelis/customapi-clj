@@ -1,9 +1,9 @@
 (ns customapi.schemas.secure)
 
-(def error-response
+(def ErrorResponse
   [:map
    [:error string?]])
 
-(def message-response
+(def MessageResponse
   [:map
    [:message string?]])

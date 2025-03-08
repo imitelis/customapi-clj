@@ -1,7 +1,7 @@
 (ns customapi.schemas.math)
 
-(def total-response
+(def TotalResponse
   {:total int?})
 
-(def two-ope-params
+(def TwoOpParams
   {:x int? :y int?})

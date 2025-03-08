@@ -1,22 +1,22 @@
 (ns customapi.schemas.clothes)
 
-(def cloth
+(def Cloth
   [:map
    [:uuid string?]
    [:name string?]
    [:type string?]
    [:size number?]])
 
-(def cloth-without-uuid
+(def ClothWithoutUuid
   [:map
    [:name string?]
    [:type string?]
    [:size number?]])
 
-(def clothes-query
+(def ClothesQuery
   [:map
    [:clothes-name {:optional true} [:maybe string?]]
    [:clothes-type {:optional true} [:maybe string?]]])
 
-(def clothes
-  [:vector cloth])
+(def Clothes
+  [:vector Cloth])
