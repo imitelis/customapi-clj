@@ -7,6 +7,7 @@ out/
 # Ignore local project-specific config
 .clj-kondo/
 .lsp/
+.calva/
 
 # Ignore the REPL files
 .nrepl-port
