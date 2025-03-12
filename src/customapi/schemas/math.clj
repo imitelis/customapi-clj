@@ -1,7 +1,9 @@
 (ns customapi.schemas.math)
 
 (def TotalResponse
-  {:total int?})
+  [:map
+   [:total number?]])
 
 (def TwoOpParams
-  {:x int? :y int?})
+  [:map
+   [:x number? :y number?]])

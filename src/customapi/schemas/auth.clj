@@ -1,16 +1,22 @@
 (ns customapi.schemas.auth)
 
 (def LoginParams
-  {:username string? :password string?})
+  [:map
+   [:username string?]
+   [:password string?]])
 
 (def LoginResponse
-  {:token string?})
+  [:map
+   [:token string?]])
 
 (def AuthParam
-  {:auth-token string?})
+  [:map
+   [:auth-token string?]])
 
 (def AuthResponse
-  {:username string?})
+  [:map
+   [:username string?]])
 
-(def Error
-  {:error string?})
+(def ErrorResponse
+  [:map
+   [:error string?]])

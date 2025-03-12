@@ -16,5 +16,5 @@
     {:get {:summary "get auth with token params"
            :parameters {:query sa/AuthParam}
            :responses {200 {:body sa/AuthResponse}
-                       401 {:body sa/Error}}
+                       401 {:body sa/ErrorResponse}}
            :handler ha/auth-handler}}]])

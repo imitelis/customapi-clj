@@ -1,8 +1,8 @@
 (ns customapi.integration.auth-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [clojure.data.json :as json]
+            [clojure.test :refer [deftest is testing]]
             [customapi.server :refer [app]]
-            [ring.mock.request :refer [json-body request]]
-            [clojure.data.json :as json]))
+            [ring.mock.request :refer [json-body request]]))
 
 (deftest auth-test
   (testing "Login with credentials"
@@ -13,9 +13,9 @@
       (is (contains? response :token))))
 
   (testing "Validate auth token"
-    (let [response (-> (request :post "/auth/login") 
+    (let [response (-> (request :post "/auth/login")
                        (json-body {:username "my-username" :password "a-password"})
-                       app :body slurp 
+                       app :body slurp
                        (json/read-str :key-fn keyword))]
       (is (contains? response :token))
       (let [token (:token response)]

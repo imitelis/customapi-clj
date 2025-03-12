@@ -1,9 +1,9 @@
 (ns customapi.integration.secure-test
-  (:require [clojure.test :refer [deftest is testing]]
-            [ring.mock.request :refer [request]]
-            [clojure.data.json :as json]
+  (:require [clojure.data.json :as json]
+            [clojure.test :refer [deftest is testing]]
+            [customapi.config.jwt :refer [jwt-sign]]
             [customapi.server :refer [app]]
-            [customapi.config.jwt :refer [jwt-sign]]))
+            [ring.mock.request :refer [request]]))
 
 (def valid-jwt
   (let [token (jwt-sign {:username "Dove"})]
@@ -15,7 +15,7 @@
                        app :body slurp
                        (json/read-str :key-fn keyword))]
       (is (= "missing header" (:error response)))))
-  
+
   (testing "Secret with valid header"
     (let [response (-> {:request-method :get
                         :uri "/secure/secret"
@@ -24,13 +24,13 @@
                        (json/read-str :key-fn keyword))]
       (println response)
       (is (= "I'm a secret!" (:message response)))))
-  
+
   (testing "Greeting missing auth header"
     (let [response (-> (request :get "/secure/greeting")
                        app :body slurp
                        (json/read-str :key-fn keyword))]
       (is (= "missing header" (:error response)))))
-  
+
   (testing "Greeting with valid header"
     (let [response (-> {:request-method :get
                         :uri "/secure/greeting"

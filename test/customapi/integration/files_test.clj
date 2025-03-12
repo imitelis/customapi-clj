@@ -3,7 +3,6 @@
             [customapi.server :refer [app]]
             [ring.mock.request :refer [json-body request]]))
 
-
 (deftest files-test
   #_((testing "Download"
        (is (= (-> {:request-method :get :uri "/files/download"}
@@ -19,5 +18,4 @@
                                        :content-type "image/png;"}]
          (is (= (-> {:request-method :post :uri "/files/data" :multipart-params {:file multipart-temp-file-part}}
                     app :body slurp)
-                "{\"name\":\"reitit.png\",\"size\":506325}")))))
-  )
+                "{\"name\":\"reitit.png\",\"size\":506325}"))))))
