@@ -9,8 +9,10 @@
 
 (def download-handler
   (fn [_]
-    {:status 200
-     :headers {"Content-Type" "image/png"}
-     :body (-> "/picture.png"
-               (io/resource)
-               (io/input-stream))}))
+    (let [resource (io/resource "portland.jpg")]
+      (if resource
+        {:status 200
+         :headers {"Content-Type" "image/jpg"}
+         :body (io/input-stream resource)}
+        {:status 404
+         :body "File not found"}))))

@@ -14,7 +14,7 @@
 
    ["/download"
     {:get {:summary "Download a file"
-           :swagger {:produces ["image/png"]}
+           :swagger {:produces ["image/jpg"]}
            :responses {200 {:description "an image"
-                            :content {"image/png" {:schema string?}}}}
+                            :content {"image/jpg" {:schema string?}}}}
            :handler hf/download-handler}}]])
