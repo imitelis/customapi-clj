@@ -15,4 +15,4 @@
          :headers {"Content-Type" "image/jpg"}
          :body (io/input-stream resource)}
         {:status 404
-         :body "File not found"}))))
+         :body {:error "File not found"}}))))
