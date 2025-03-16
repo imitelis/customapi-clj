@@ -7,7 +7,7 @@
 
    {:tags #{"clothes"}}
 
-   ["/"
+   [""
     {:post {:summary "Add a new cloth"
             :parameters {:body sc/ClothWithoutUuid}
             :responses {201 {:body sc/Cloth}

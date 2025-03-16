@@ -1,9 +1,9 @@
-(ns customapi.integration.math-test
+(ns customapi.integration.math-routes
   (:require [clojure.test :refer [deftest is testing]]
             [customapi.server :refer [app]]
             [ring.mock.request :refer [json-body request]]))
 
-(deftest math-test
+(deftest test-math-routes
   (testing "Sum 2 numbers with query-params"
     (is (= (-> (request :get "/math/plus?x=20&y=3")
                app :body slurp)

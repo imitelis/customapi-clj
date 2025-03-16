@@ -1,10 +1,10 @@
-(ns customapi.integration.auth-test
+(ns customapi.integration.auth-routes
   (:require [clojure.data.json :as json]
             [clojure.test :refer [deftest is testing]]
             [customapi.server :refer [app]]
             [ring.mock.request :refer [json-body request]]))
 
-(deftest auth-test
+(deftest test-auth-routes
   (testing "Login with credentials"
     (let [response (-> (request :post "/auth/login")
                        (json-body {:username "my-username" :password "a-password"})

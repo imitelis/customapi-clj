@@ -1,10 +1,10 @@
-(ns customapi.integration.files-test
+(ns customapi.integration.files-routes
   (:require [clojure.java.io :as io]
             [clojure.test :refer [deftest is testing]]
             [customapi.server :refer [app]]
             [ring.mock.request :as mock]))
 
-(deftest files-test
+(deftest test-files-routes
   (testing "Download a file"
     (let [response (app (mock/request :get "/files/download"))
           response-body (slurp (:body response) :encoding "ISO-8859-1")
