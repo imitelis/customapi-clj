@@ -1,4 +1,4 @@
-(ns customapi.unit.secure
+(ns customapi.unit.secure-schemas
   (:require [clojure.test :refer [deftest is testing]]
             [customapi.schemas.secure :as ss]
             [customapi.unit.common :refer [valid-schema?]]))

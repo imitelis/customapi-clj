@@ -1,5 +1,5 @@
-(ns customapi.unit.files
-  (:require ;; [reitit.ring.malli :as rm]
+(ns customapi.unit.files-schemas
+  (:require
    [clojure.test :refer [deftest is testing]]
    [customapi.schemas.files :as fs]
    [customapi.unit.common :refer [valid-schema?]]))

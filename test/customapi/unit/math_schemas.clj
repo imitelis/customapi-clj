@@ -1,4 +1,4 @@
-(ns customapi.unit.math
+(ns customapi.unit.math-schemas
   (:require [clojure.test :refer [deftest is testing]]
             [customapi.schemas.math :as ms]
             [customapi.unit.common :refer [valid-schema?]]))

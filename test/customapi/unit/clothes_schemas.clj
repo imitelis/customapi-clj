@@ -1,4 +1,4 @@
-(ns customapi.unit.clothes
+(ns customapi.unit.clothes-schemas
   (:require [clojure.test :refer [deftest is testing]]
             [customapi.schemas.clothes :as cs]
             [customapi.unit.common :refer [valid-schema?]]))
