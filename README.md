@@ -16,6 +16,10 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
   *  Build a docker image for running the `.jar` with `docker build -t customapi .`
   *  Run the docker container afer building its image with `docker run -p 3000:3000 customapi`
 
+## Environments
+  *  Set the testing environment using `export ENV=test` via terminal
+  *  After running all tests, use `unset ENV` to point the `config.edn` database
+
 ## Options
 
   *  `lein run`: Start the server on default settings
@@ -38,7 +42,7 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
   *  OAuth: Middleware for secured API endpoints with interactive `auth-header` via `/src/customapi/config/middlewares.clj`
   *  OpenAPI: Self-documenting and interacteable API endpoints at `localhost:3000/index.html`
   *  RestAPI: Resftul API endpoints fulfilling CRUD operations for a `/src/customapi/schemas/clothes.clj` schema
-  *  Tests: Validate `schemas` with unit tests and `routes` with integration tests via `/test/customapi` folders
+  *  Tests: Validate `schemas` with unit tests and `routes` with integration tests via `/test/customapi` respectively
 
 ## License
 
