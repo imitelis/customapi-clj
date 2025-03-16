@@ -17,4 +17,8 @@ out/
 .lein-failures
 
 # Ignore config.edn
-# config.edn
+# resources/config.edn
+
+# Ignore databases
+# clothes.db
+jdbc:sqlite::memory:
