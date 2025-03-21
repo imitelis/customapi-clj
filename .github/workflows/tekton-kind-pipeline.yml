@@ -40,6 +40,11 @@ jobs:
         run: |
           kubectl get pods --namespace tekton-pipelines
 
+      - name: Port-forward Tekton Webhook service
+        run: |
+          kubectl port-forward svc/tekton-pipelines-webhook -n tekton-pipelines 8080:443 &
+          sleep 5
+
       - name: Trigger Tekton pipeline
         run: |
           kubectl apply -f .github/workflows/customapi-pipeline-run.yaml
