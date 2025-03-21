@@ -42,7 +42,7 @@ jobs:
 
       - name: Trigger Tekton pipeline
         run: |
-          kubectl apply -f customapi-pipeline-run.yaml
+          kubectl apply -f .github/workflows/customapi-pipeline-run.yaml
 
       - name: Clean up kind cluster
         run: |
