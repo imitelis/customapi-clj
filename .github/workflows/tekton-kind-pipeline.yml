@@ -39,3 +39,11 @@ jobs:
       - name: Verify Tekton installation
         run: |
           kubectl get pods --namespace tekton-pipelines
+
+      - name: Trigger Tekton pipeline
+        run: |
+          kubectl apply -f customapi-pipeline-run.yaml
+
+      - name: Clean up kind cluster
+        run: |
+          kind delete cluster --name tekton-cluster

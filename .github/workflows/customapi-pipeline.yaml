@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: customapi-pipeline
+spec:
+  tasks:
+    - name: run-lein-test
+      taskRef:
+        name: lein-test-task
