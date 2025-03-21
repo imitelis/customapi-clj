@@ -8,7 +8,7 @@
 (initialize-db!)
 
 (deftest test-clothes-routes
-  (testing "Get empty list of clothes"
+  (testing "Get initial list of clothes"
     (let [response (-> (request :get "/clothes")
                        app :body slurp
                        (json/read-str :key-fn keyword))]
@@ -36,7 +36,7 @@
             (is (= (:type get-response) "fancy"))
             (is (= (:size get-response) 12.0))))
 
-        (testing "Edit that cloth"
+        (testing "Patch that cloth"
           (let [patch-response (-> {:request-method :patch :uri (str "/clothes/" cloth-uuid)}
                                    (json-body {:name "xl-shirt" :type "fancy" :size 14})
                                    app :body slurp
@@ -89,4 +89,10 @@
                                          app :body slurp
                                          (json/read-str :key-fn keyword))]
           (is (= first-delete-response {}))
-          (is (= second-delete-response {})))))))
+          (is (= second-delete-response {}))))
+
+      (testing "Get empty list of clothes"
+        (let [response (-> (request :get "/clothes")
+                           app :body slurp
+                           (json/read-str :key-fn keyword))]
+          (is (= "Clothes not found" (:error response))))))))
