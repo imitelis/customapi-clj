@@ -30,3 +30,12 @@ jobs:
           curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.24.0/bin/linux/amd64/kubectl
           chmod +x ./kubectl
           sudo mv ./kubectl /usr/local/bin/kubectl
+
+      - name: Install Tekton Pipelines
+        run: |
+          kubectl create namespace tekton-pipelines
+          kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
+
+      - name: Verify Tekton installation
+        run: |
+          kubectl get pods --namespace tekton-pipelines
