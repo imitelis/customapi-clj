@@ -41,20 +41,3 @@ jobs:
           kubectl get pods --namespace tekton-pipelines
           kubectl get svc --namespace tekton-pipelines
           kubectl get deployments --namespace tekton-pipelines
-
-      - name: Port-forward Tekton Webhook service
-        run: |
-          kubectl port-forward svc/tekton-pipelines-webhook -n tekton-pipelines 8080:443 &
-          sleep 30
-
-      - name: Describe kubectl node
-        run: |
-          kubectl describe node
-
-      - name: Trigger Tekton pipeline
-        run: |
-          kubectl apply -f .github/workflows/customapi-pipeline-run.yaml
-
-      - name: Clean up kind cluster
-        run: |
-          kind delete cluster --name tekton-cluster
