@@ -45,6 +45,10 @@ jobs:
           kubectl port-forward svc/tekton-pipelines-webhook -n tekton-pipelines 8080:443 &
           sleep 20
 
+      - name: Wait for Tekton Webhook service to be ready
+        run: |
+          kubectl wait --for=condition=available --timeout=300s deployment/tekton-pipelines-webhook -n tekton-pipelines
+
       - name: Trigger Tekton pipeline
         run: |
           kubectl apply -f .github/workflows/customapi-pipeline-run.yaml
