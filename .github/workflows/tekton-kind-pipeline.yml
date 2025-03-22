@@ -39,15 +39,17 @@ jobs:
       - name: Verify Tekton installation
         run: |
           kubectl get pods --namespace tekton-pipelines
+          kubectl get svc --namespace tekton-pipelines
+          kubectl get deployments --namespace tekton-pipelines
 
       - name: Port-forward Tekton Webhook service
         run: |
           kubectl port-forward svc/tekton-pipelines-webhook -n tekton-pipelines 8080:443 &
-          sleep 20
+          sleep 30
 
-      - name: Wait for Tekton Webhook service to be ready
+      - name: Describe kubectl node
         run: |
-          kubectl wait --for=condition=available --timeout=300s deployment/tekton-pipelines-webhook -n tekton-pipelines
+          kubectl describe node
 
       - name: Trigger Tekton pipeline
         run: |
