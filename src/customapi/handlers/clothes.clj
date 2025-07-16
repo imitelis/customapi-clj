@@ -20,7 +20,8 @@
   (let [query-params (:query-params request)
         clothes-name (get query-params "clothes-name")
         clothes-type (get query-params "clothes-type")
-        clothes (dc/get-clothes! clothes-name clothes-type)]
+        clothes-size (get query-params "clothes-size")
+        clothes (dc/get-clothes! clothes-name clothes-type clothes-size)]
     (if (seq clothes)
       (let [adapted-clothes (ac/clothes-adapter clothes)
             valid-clothes (m/validate sc/Clothes adapted-clothes)]

@@ -16,7 +16,8 @@
 (def ClothesQuery
   [:map
    [:clothes-name {:optional true} [:maybe string?]]
-   [:clothes-type {:optional true} [:maybe string?]]])
+   [:clothes-type {:optional true} [:maybe string?]]
+   [:clothes-size {:optional true} [:maybe integer?]]])
 
 (def Clothes
   [:vector Cloth])

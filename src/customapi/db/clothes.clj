@@ -1,39 +1,49 @@
 (ns customapi.db.clothes
   (:require [customapi.db.core :as dc]
+            [honey.sql :as sql]
+            [honey.sql.helpers :as h]
             [next.jdbc :as jdbc]))
 
 (defn add-a-cloth! [cloth-without-uuid]
   (let [cloth-uuid (str (java.util.UUID/randomUUID))
-        cloth cloth-without-uuid]
-    (jdbc/execute!
-     dc/db-spec
-     ["INSERT INTO clothes (uuid, name, type, size) VALUES (?, ?, ?, ?)"
-      cloth-uuid (:name cloth) (:type cloth) (:size cloth)])
+        cloth (assoc cloth-without-uuid :uuid cloth-uuid)
+        insert-map (h/insert-into :clothes)
+        insert-map (h/values insert-map [cloth])
+        sql-map (sql/format insert-map)]
+    (jdbc/execute! dc/db-spec sql-map)
     cloth-uuid))
 
-(defn get-clothes! [clothes-name clothes-type]
-  (let [base-query "SELECT * FROM clothes"
-        query-params (cond-> []
-                       clothes-name (conj ["name LIKE ?" (str "%" clothes-name "%")])
-                       clothes-type (conj ["type LIKE ?" (str "%" clothes-type "%")]))
-        final-query (if (empty? query-params)
-                      base-query
-                      (str base-query " WHERE " (String/join " AND " (map first query-params))))]
-    ;; (println "Final query:" final-query)
-    (jdbc/execute! dc/db-spec (concat [final-query] (map second query-params)))))
+(defn get-clothes! [clothes-name clothes-type clothes-size]
+  (let [conditions (cond-> []
+                     clothes-name (conj [:like :name (str "%" clothes-name "%")])
+                     clothes-type (conj [:like :type (str "%" clothes-type "%")])
+                     clothes-size (conj [:= :size clothes-size]))
+        sql-map (-> (h/select :*)
+                    (h/from :clothes)
+                    (cond-> (seq conditions) (h/where [:and conditions]))
+                    sql/format)]
+    (jdbc/execute! dc/db-spec sql-map)))
 
 (defn get-a-cloth! [uuid]
-  (let [result (jdbc/execute! dc/db-spec ["SELECT * FROM clothes WHERE uuid = ?" uuid])]
+  (let [sql-map (-> (h/select :*)
+                    (h/from :clothes)
+                    (h/where [:= :uuid uuid])
+                    sql/format)
+        result (jdbc/execute! dc/db-spec sql-map)]
     (first result)))
 
 (defn delete-a-cloth! [uuid]
-  (let [result (jdbc/execute! dc/db-spec ["DELETE FROM clothes WHERE uuid = ?" uuid])]
+  (let [sql-map (-> (h/delete-from :clothes)
+                    (h/where [:= :uuid uuid])
+                    sql/format)
+        result (jdbc/execute! dc/db-spec sql-map)]
     (first result)))
 
 (defn patch-a-cloth! [cloth-uuid cloth-to-edit]
-  (let [uuid cloth-uuid
-        cloth cloth-to-edit]
-    (jdbc/execute!
-     dc/db-spec
-     ["UPDATE clothes SET name = ?, type = ?, size = ? WHERE uuid = ?"
-      (:name cloth) (:type cloth) (:size cloth) uuid])))
+  (let [sql-map (-> (h/update :clothes)
+                    (h/set {:name (:name cloth-to-edit)
+                            :type (:type cloth-to-edit)
+                            :size (:size cloth-to-edit)})
+                    (h/where [:= :uuid cloth-uuid])
+                    sql/format)]
+    (jdbc/execute! dc/db-spec sql-map)))
