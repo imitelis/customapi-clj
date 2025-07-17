@@ -1,8 +1,8 @@
 (ns customapi.db.core
-  (:require [customapi.config.secrets :refer [secrets]]
-            [ragtime.repl :as repl]
+  (:require [clojure.java.io :as io]
+            [customapi.config.secrets :refer [secrets]]
             [ragtime.jdbc :as jdbc]
-            [clojure.java.io :as io]))
+            [ragtime.repl :as repl]))
 
 (defn get-db-name []
   (let [config secrets
