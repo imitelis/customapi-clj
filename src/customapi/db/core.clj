@@ -1,6 +1,8 @@
 (ns customapi.db.core
   (:require [customapi.config.secrets :refer [secrets]]
-            [next.jdbc :as jdbc]))
+            [ragtime.repl :as repl]
+            [ragtime.jdbc :as jdbc]
+            [clojure.java.io :as io]))
 
 (defn get-db-name []
   (let [config secrets
@@ -11,12 +13,17 @@
     db-name))
 
 (def db-spec
-  {:dbtype (:db-type secrets)
-   :dbname (get-db-name)})
+  {:connection-uri (get-db-name)})
 
-(defn create-tables! []
-  (jdbc/execute! db-spec
-                 ["CREATE TABLE IF NOT EXISTS clothes (uuid TEXT PRIMARY KEY, name TEXT, type TEXT, size TEXT)"]))
+(def migration-config
+  {:datastore  (jdbc/sql-database db-spec)
+   :migrations (jdbc/load-directory (io/resource "migrations"))})
+
+(defn migrate! []
+  (repl/migrate migration-config))
+
+(defn rollback! []
+  (repl/rollback migration-config))
 
 (defn initialize-db! []
-  (create-tables!))
+  (migrate!))

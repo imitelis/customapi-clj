@@ -13,6 +13,7 @@
                  [ring-cors/ring-cors "0.1.13"]
                  [ring-logger/ring-logger "1.1.1"]
                  [javax.servlet/servlet-api "2.5"]
+                 [dev.weavejester/ragtime "0.11.0"]
                  [ch.qos.logback/logback-classic "1.2.6"]
                  [com.github.seancorfield/honeysql "2.7.1310"]
                  [com.github.seancorfield/next.jdbc "1.3.994"]

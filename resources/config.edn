@@ -1,5 +1,5 @@
 {:db-type "sqlite"
- :db-name "clothes.db"
+ :db-name "jdbc:sqlite:clothes.db"
  :host "0.0.0.0"
  :port 3000
  :allowed-host "localhost"
