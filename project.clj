@@ -3,7 +3,8 @@
   :url "http://example.com/FIXME"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
-  :dependencies [[buddy/buddy-sign "3.4.1"]
+  :dependencies [[environ "1.2.0"]
+                 [buddy/buddy-sign "3.4.1"]
                  [metosin/reitit "0.8.0-alpha1"]
                  [metosin/jsonista "0.3.8"]
                  [metosin/ring-swagger-ui "5.9.0"] 
@@ -29,7 +30,8 @@
   :repl-options {:init-ns customapi.server}
   :aliases {"lint"     ["do" ["cljfmt" "check"] ["nsorg"] ["kibit"]]
             "lint-fix" ["do" ["cljfmt" "fix"] ["nsorg" "--replace"]]}
-  :plugins [[lein-nsorg "0.3.0" :exclusions [org.clojure/clojure]]
+  :plugins [[lein-environ "1.2.0"]
+            [lein-nsorg "0.3.0" :exclusions [org.clojure/clojure]]
             [lein-cljfmt "0.6.4" :exclusions [org.clojure/clojure]]]
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})

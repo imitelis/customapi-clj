@@ -1,7 +1,7 @@
-{:db-type "sqlite"
- :db-name "jdbc:sqlite:clothes.db"
- :host "0.0.0.0"
+{:host "0.0.0.0"
  :port 3000
  :allowed-host "localhost"
  :allowed-origin "http://localhost:3000"
+ :db-type "sqlite"
+ :db-name "jdbc:sqlite:clothes.db"
  :jwt-key "your-secret-key"}

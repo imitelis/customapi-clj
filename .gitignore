@@ -13,7 +13,8 @@ out/
 .nrepl-port
 .prepl-port
 
-# Ignore Lein failures
+# Ignore Lein files
+.lein-env
 .lein-failures
 
 # Ignore config.edn
