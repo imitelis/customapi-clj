@@ -22,4 +22,4 @@ out/
 
 # Ignore databases
 # clothes.db
-jdbc:sqlite::memory:
+clothes-test.db

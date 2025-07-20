@@ -4,18 +4,16 @@
             [ragtime.repl :as repl]))
 
 (defn get-db-name []
-  (let [config secrets
-        env (System/getenv "ENV")
-        db-name (if (= env "test")
-                  "jdbc:sqlite::memory:"
-                  (:db-name config))]
-    db-name))
+  (let [env (:env secrets)]
+    (if (= env "test")
+      (:db-test secrets)
+      (:db-name secrets))))
 
-(def db-spec
+(def ^:dynamic db-spec
   {:connection-uri (get-db-name)})
 
 (def migration-config
-  {:datastore  (jdbc/sql-database {:connection-uri (get-db-name)})
+  {:datastore  (jdbc/sql-database db-spec)
    :migrations (jdbc/load-resources "migrations")})
 
 (defn migrate! []

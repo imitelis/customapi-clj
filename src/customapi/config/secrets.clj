@@ -30,7 +30,6 @@
         :else v))
     :else v))
 
-;; env > config.edn
 (def secrets
   (let [file-config (load-config-edn)
         env-vars    (load-env-vars)

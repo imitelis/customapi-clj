@@ -1,6 +1,6 @@
 (defproject customapi "0.1.0"
   :description "Reitit OpenAPI Custom API"
-  :url "http://example.com/FIXME"
+  :url "http://github.com/imitelis/customapi"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[environ "1.2.0"]
@@ -29,8 +29,12 @@
   :target-path "target/%s"
   :uberjar-name "customapi.jar"
   :repl-options {:init-ns customapi.server}
-  :aliases {"lint"     ["do" ["cljfmt" "check"] ["nsorg"] ["kibit"]]
-            "lint-fix" ["do" ["cljfmt" "fix"] ["nsorg" "--replace"]]}
+  :aliases {"unit"        ["test" ":unit"]
+            "integration" ["test" ":integration"]
+            "lint"        ["do" ["cljfmt" "check"] ["nsorg"] ["kibit"]]
+            "lint-fix"    ["do" ["cljfmt" "fix"] ["nsorg" "--replace"]]}
+  :test-selectors {:unit (fn [m] (.contains (str (:ns m)) "unit"))
+                   :integration (fn [m] (.contains (str (:ns m)) "integration"))}
   :plugins [[lein-environ "1.2.0"]
             [lein-nsorg "0.3.0" :exclusions [org.clojure/clojure]]
             [lein-cljfmt "0.6.4" :exclusions [org.clojure/clojure]]]
