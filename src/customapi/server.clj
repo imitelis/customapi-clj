@@ -1,7 +1,8 @@
 (ns customapi.server
   (:gen-class)
   (:require [customapi.config.docs :refer [docs]]
-            [customapi.config.middlewares :refer [middlewares]] [customapi.config.secrets :refer [secrets]]
+            [customapi.config.middlewares :refer [middlewares]]
+            [customapi.config.secrets :refer [secrets]]
             [customapi.db.core :refer [initialize-db!]]
             [customapi.routes.core :refer [routes]]
             [mount.core :as mount]

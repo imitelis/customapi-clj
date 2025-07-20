@@ -25,7 +25,7 @@
   (repl/rollback migration-config))
 
 (defstate conn
-  :start (next.jdbc/get-datasource db-spec))
+  :start (njdbc/get-datasource db-spec))
 
 (defn initialize-db! []
   (migrate!))
