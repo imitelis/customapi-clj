@@ -1,6 +1,5 @@
 (ns customapi.db.core
-  (:require [clojure.java.io :as io]
-            [customapi.config.secrets :refer [secrets]]
+  (:require [customapi.config.secrets :refer [secrets]]
             [ragtime.jdbc :as jdbc]
             [ragtime.repl :as repl]))
 
@@ -16,8 +15,8 @@
   {:connection-uri (get-db-name)})
 
 (def migration-config
-  {:datastore  (jdbc/sql-database db-spec)
-   :migrations (jdbc/load-directory (io/resource "migrations"))})
+  {:datastore  (jdbc/sql-database {:connection-uri (get-db-name)})
+   :migrations (jdbc/load-resources "migrations")})
 
 (defn migrate! []
   (repl/migrate migration-config))

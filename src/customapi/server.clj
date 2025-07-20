@@ -1,4 +1,5 @@
 (ns customapi.server
+  (:gen-class)
   (:require [customapi.config.docs :refer [docs]]
             [customapi.config.middlewares :refer [middlewares]]
             [customapi.config.secrets :refer [secrets]]
@@ -16,4 +17,6 @@
 
 (defn -main []
   (initialize-db!)
-  (jetty/run-jetty #'app {:host (:host secrets), :port (:port secrets), :join? false}))
+  (jetty/run-jetty #'app {:host (:host secrets)
+                          :port (:port secrets)
+                          :join? false}))
