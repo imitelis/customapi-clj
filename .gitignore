@@ -5,7 +5,7 @@ target/
 out/
 
 # Ignore local project-specific config
-.clj-kondo/
+.clj-kondo/.cache/
 .lsp/
 .calva/
 
