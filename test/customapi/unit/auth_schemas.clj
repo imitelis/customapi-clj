@@ -1,7 +1,7 @@
 (ns customapi.unit.auth-schemas
   (:require [clojure.test :refer [deftest is testing]]
-            [customapi.schemas.auth :as as]
-            [customapi.unit.common :refer [valid-schema?]]))
+            [customapi.aux.common :refer [valid-schema?]]
+            [customapi.schemas.auth :as as]))
 
 (deftest test-login-params-schema
   (testing "LoginParams schema validation"

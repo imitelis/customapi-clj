@@ -1,8 +1,7 @@
 (ns customapi.unit.files-schemas
-  (:require
-   [clojure.test :refer [deftest is testing]]
-   [customapi.schemas.files :as fs]
-   [customapi.unit.common :refer [valid-schema?]]))
+  (:require [clojure.test :refer [deftest is testing]]
+            [customapi.aux.common :refer [valid-schema?]]
+            [customapi.schemas.files :as fs]))
 
 (deftest test-upload-response-schema
   (testing "UploadResponse schema validation"

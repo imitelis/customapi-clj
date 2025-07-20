@@ -4,5 +4,5 @@
  :allowed-host "localhost"
  :allowed-origin "http://localhost:3000"
  :db-name "jdbc:sqlite:clothes.db"
- :db-test "jdbc:sqlite:clothes-test.db"
+ :db-test "jdbc:sqlite:test.db"
  :jwt-key "your-secret-key"}

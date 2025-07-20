@@ -1,8 +1,12 @@
 (ns customapi.integration.clothes-routes
-  (:require [clojure.data.json :as json]
-            [clojure.test :refer [deftest is testing]]
-            [customapi.server :refer [app]]
-            [ring.mock.request :refer [json-body request]]))
+  (:require
+   [clojure.data.json :as json]
+   [clojure.test :refer [deftest is testing use-fixtures]]
+   [customapi.aux.fixtures :refer [db-fixture]]
+   [customapi.server :refer [app]]
+   [ring.mock.request :refer [json-body request]]))
+
+(use-fixtures :once db-fixture)
 
 (deftest test-clothes-routes
   (testing "Get initial list of clothes"

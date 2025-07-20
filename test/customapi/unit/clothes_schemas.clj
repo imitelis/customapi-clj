@@ -1,7 +1,7 @@
 (ns customapi.unit.clothes-schemas
   (:require [clojure.test :refer [deftest is testing]]
-            [customapi.schemas.clothes :as cs]
-            [customapi.unit.common :refer [valid-schema?]]))
+            [customapi.aux.common :refer [valid-schema?]]
+            [customapi.schemas.clothes :as cs]))
 
 (deftest test-cloth-schema
   (testing "Cloth schema validation"

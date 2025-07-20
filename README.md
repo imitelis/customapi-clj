@@ -43,8 +43,9 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
   *  OAuth: Middleware for secured API endpoints with interactive `auth-header` via `/src/customapi/config/middlewares.clj`
   *  OpenAPI: Self-documenting and interacteable API endpoints at `localhost:3000/index.html`
   *  RestAPI: Resftul API endpoints fulfilling CRUD operations for a `/src/customapi/schemas/clothes.clj` schema
-  *  Tests: Validate `schemas` with unit tests and `routes` with integration tests via `/test/customapi` respectively
-  *  Test env: Integration tests that connect to the DB take place within testing DB via `ENV=test lein integration`
+  *  Tests: Validate `schemas` with unit tests and `routes` with integration tests in `/test/customapi` respectively
+  *  Test env: Integration tests that connect to the DB take place within `test.db` via `ENV=test lein integration`
+  *  Test aux: Common funcs and DB fixtures for both unit and integration tests at `/test/customapi/aux`
 
 ## License
 

@@ -22,4 +22,4 @@ out/
 
 # Ignore databases
 # clothes.db
-clothes-test.db
+test.db

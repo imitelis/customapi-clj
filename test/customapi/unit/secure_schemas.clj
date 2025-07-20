@@ -1,7 +1,7 @@
 (ns customapi.unit.secure-schemas
   (:require [clojure.test :refer [deftest is testing]]
-            [customapi.schemas.secure :as ss]
-            [customapi.unit.common :refer [valid-schema?]]))
+            [customapi.aux.common :refer [valid-schema?]]
+            [customapi.schemas.secure :as ss]))
 
 (deftest test-error-response-schema
   (testing "ErrorResponse schema validation"
