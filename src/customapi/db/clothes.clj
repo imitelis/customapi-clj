@@ -1,5 +1,5 @@
 (ns customapi.db.clothes
-  (:require [customapi.db.core :refer [db-spec]]
+  (:require [customapi.db.core :refer [conn]]
             [honey.sql :as sql]
             [honey.sql.helpers :as h]
             [next.jdbc :as jdbc]))
@@ -10,7 +10,7 @@
         insert-map (h/insert-into :clothes)
         insert-map (h/values insert-map [cloth])
         sql-map (sql/format insert-map)]
-    (jdbc/execute! db-spec sql-map)
+    (jdbc/execute! conn sql-map)
     cloth-uuid))
 
 (defn get-clothes! [clothes-name clothes-type clothes-size]
@@ -22,21 +22,21 @@
                     (h/from :clothes)
                     (cond-> (seq conditions) (h/where [:and conditions]))
                     sql/format)]
-    (jdbc/execute! db-spec sql-map)))
+    (jdbc/execute! conn sql-map)))
 
 (defn get-a-cloth! [uuid]
   (let [sql-map (-> (h/select :*)
                     (h/from :clothes)
                     (h/where [:= :uuid uuid])
                     sql/format)
-        result (jdbc/execute! db-spec sql-map)]
+        result (jdbc/execute! conn sql-map)]
     (first result)))
 
 (defn delete-a-cloth! [uuid]
   (let [sql-map (-> (h/delete-from :clothes)
                     (h/where [:= :uuid uuid])
                     sql/format)
-        result (jdbc/execute! db-spec sql-map)]
+        result (jdbc/execute! conn sql-map)]
     (first result)))
 
 (defn patch-a-cloth! [cloth-uuid cloth-to-edit]
@@ -46,4 +46,4 @@
                             :size (:size cloth-to-edit)})
                     (h/where [:= :uuid cloth-uuid])
                     sql/format)]
-    (jdbc/execute! db-spec sql-map)))
+    (jdbc/execute! conn sql-map)))

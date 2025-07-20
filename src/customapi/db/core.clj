@@ -1,16 +1,18 @@
 (ns customapi.db.core
   (:require [customapi.config.secrets :refer [secrets]]
+            [mount.core :refer [defstate]]
+            [next.jdbc :as njdbc]
             [ragtime.jdbc :as jdbc]
             [ragtime.repl :as repl]))
 
-(defn get-db-name []
+(defn get-db-uri []
   (let [env (:env secrets)]
     (if (= env "test")
-      (:db-test secrets)
-      (:db-name secrets))))
+      (:db-uri-test secrets)
+      (:db-uri secrets))))
 
 (def ^:dynamic db-spec
-  {:connection-uri (get-db-name)})
+  {:connection-uri (get-db-uri)})
 
 (def migration-config
   {:datastore  (jdbc/sql-database db-spec)
@@ -21,6 +23,9 @@
 
 (defn rollback! []
   (repl/rollback migration-config))
+
+(defstate conn
+  :start (next.jdbc/get-datasource db-spec))
 
 (defn initialize-db! []
   (migrate!))

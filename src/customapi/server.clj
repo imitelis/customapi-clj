@@ -1,10 +1,10 @@
 (ns customapi.server
   (:gen-class)
   (:require [customapi.config.docs :refer [docs]]
-            [customapi.config.middlewares :refer [middlewares]]
-            [customapi.config.secrets :refer [secrets]]
+            [customapi.config.middlewares :refer [middlewares]] [customapi.config.secrets :refer [secrets]]
             [customapi.db.core :refer [initialize-db!]]
             [customapi.routes.core :refer [routes]]
+            [mount.core :as mount]
             [reitit.ring :as ring]
             [ring.adapter.jetty :as jetty]))
 
@@ -16,6 +16,7 @@
    docs))
 
 (defn -main []
+  (mount/start)
   (initialize-db!)
   (jetty/run-jetty #'app {:host (:host secrets)
                           :port (:port secrets)
