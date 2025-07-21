@@ -3,7 +3,7 @@
   (:require [customapi.config.docs :refer [docs]]
             [customapi.config.middlewares :refer [middlewares]]
             [customapi.config.secrets :refer [secrets]]
-            [customapi.db.core :refer [initialize-db!]]
+            [customapi.db.core :refer [init-db!]]
             [customapi.routes.core :refer [routes]]
             [mount.core :as mount]
             [reitit.ring :as ring]
@@ -18,7 +18,7 @@
 
 (defn -main []
   (mount/start)
-  (initialize-db!)
+  (init-db!)
   (jetty/run-jetty #'app {:host (:host secrets)
                           :port (:port secrets)
                           :join? false}))

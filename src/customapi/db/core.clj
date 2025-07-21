@@ -2,7 +2,7 @@
   (:require [customapi.config.secrets :refer [secrets]]
             [mount.core :refer [defstate]]
             [next.jdbc :as njdbc]
-            [ragtime.jdbc :as jdbc]
+            [ragtime.jdbc :as rjdbc]
             [ragtime.repl :as repl]))
 
 (defn get-db-uri []
@@ -15,8 +15,8 @@
   {:connection-uri (get-db-uri)})
 
 (def migration-config
-  {:datastore  (jdbc/sql-database db-spec)
-   :migrations (jdbc/load-resources "migrations")})
+  {:datastore  (rjdbc/sql-database db-spec)
+   :migrations (rjdbc/load-resources "migrations")})
 
 (defn migrate! []
   (repl/migrate migration-config))
@@ -27,5 +27,5 @@
 (defstate conn
   :start (njdbc/get-datasource db-spec))
 
-(defn initialize-db! []
+(defn init-db! []
   (migrate!))

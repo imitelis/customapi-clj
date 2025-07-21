@@ -27,8 +27,8 @@
                  [org.apache.commons/commons-fileupload2-core "2.0.0-M2"]]
   :main customapi.server
   :aot [customapi.server]
-  :target-path "target/%s"
-  :uberjar-name "customapi.jar"
+  :target-path "build/"
+  :uberjar-name "server.jar"
   :repl-options {:init-ns customapi.server}
   :aliases {"unit"        ["test" ":unit"]
             "integration" ["test" ":integration"]

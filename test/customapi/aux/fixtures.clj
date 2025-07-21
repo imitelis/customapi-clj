@@ -5,7 +5,7 @@
 (defn db-fixture [f]
   (try
     (mount/start)
-    (db/initialize-db!)
+    (db/init-db!)
     (f)
     (finally
       (db/rollback!))))

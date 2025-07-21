@@ -12,9 +12,10 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
 ## Usage
 
   *  Check `docker` is installed with `docker -version` (`Docker version 27.5.1`)
-  *  Run `lein uberjar` to compile project and get a `/target/uberjar/customapi-0.1.0-standalone.jar` file
-  *  Build a docker image for running the `.jar` with `docker build -t customapi .`
+  *  Run `lein uberjar` to compile project and get a `/target/uberjar/server.jar` file
+  *  Build a dev docker image for it with `docker build -f dev.Dockerfile -t customapi .`
   *  Run the docker container afer building its image with `docker run -p 3000:3000 customapi`
+  *  Pass secrets to the starting container via `docker run -p 4000:4000 -e PORT=4000 ... customapi`
 
 ## Options
 

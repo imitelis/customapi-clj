@@ -1,0 +1,26 @@
+# Version control directories
+.git
+.github
+
+# Local environment files
+.lein-env
+.lein-failures
+.lsp
+.clj-kondo
+
+# Local databases or generated files
+clothes.db
+test.db
+
+# Build artifacts and cache
+# target
+
+# Documentation and other local files not needed in the container
+doc
+README.md
+CHANGELOG.md
+
+# Tests and development configs (optional, if not needed in production image)
+test
+dev.Dockerfile
+docker-compose.dev.yml
