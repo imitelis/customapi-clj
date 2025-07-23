@@ -14,8 +14,8 @@ RUN lein deps
 # Copy actual server files
 COPY . .
 
-# Default command to run your app - adjust if your main class or start differs
-CMD ["lein", "uberjar"]
+# Default command to build your app - adjust if your main class or start differs
+RUN lein uberjar
 
 # Use an official OpenJDK runtime as a parent image
 # ----------- Runner stage -------------
@@ -28,4 +28,4 @@ WORKDIR /usr/src/app
 COPY --from=build-stage /usr/src/app/target/uberjar/server.jar /usr/src/app 
 
 # Default command to run your app - adjust if your main class or start differs
-CMD ["java", "-jar", "/usr/src/app/server.jar"]
+CMD ["java", "-jar", "server.jar"]

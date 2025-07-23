@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: secretpassword
+      POSTGRES_DB: clothes
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  server:
+    image: customapi-dev
+    container_name: customapi-dev
+    ports:
+      - 3001:3000
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment: 
+      - DB_URI=jdbc:postgresql://postgres:5434/clothes?user=myuser&password=secretpassword
+    depends_on:
+      - postgres
+  
+  debug-helper:    
+    image: busybox
+
+volumes:
+  postgres_data:

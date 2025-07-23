@@ -16,6 +16,7 @@ Just a silly CustomAPI project making use of Clojure specific libraries to build
   *  Build a dev docker image for it with `docker build -f dev.Dockerfile -t customapi .`
   *  Run the docker container afer building its image with `docker run -p 3000:3000 customapi`
   *  Pass secrets to the starting container via `docker run -p 4000:4000 -e PORT=4000 ... customapi`
+  *  Start server and db in docker-compose with default vars with `docker-compose -f docker-compose.dev.yml up`
 
 ## Options
 
