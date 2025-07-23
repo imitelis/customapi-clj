@@ -3,7 +3,7 @@
             [customapi.schemas.clothes :as sc]))
 
 (def clothes-routes
-  ["/clothes"
+  ["/api/clothes"
 
    {:tags #{"clothes"}}
 

@@ -3,7 +3,7 @@
             [customapi.schemas.math :as sm]))
 
 (def math-routes
-  ["/math"
+  ["/api/math"
 
    {:tags #{"math"}}
 

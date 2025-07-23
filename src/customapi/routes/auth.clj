@@ -3,7 +3,7 @@
             [customapi.schemas.auth :as sa]))
 
 (def auth-routes
-  ["/auth"
+  ["/api/auth"
 
    {:tags #{"auth"}}
 

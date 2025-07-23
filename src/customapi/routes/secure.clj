@@ -4,7 +4,8 @@
             [customapi.schemas.secure :as ss]))
 
 (def secure-routes
-  ["/secure"
+  ["/api/secure"
+
    {:tags #{"secure"}
     :openapi {:security [{"auth" []}]}
     :swagger {:security [{"auth" []}]}

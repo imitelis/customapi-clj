@@ -3,7 +3,8 @@
             [customapi.schemas.files :as sf]))
 
 (def files-routes
-  ["/files"
+  ["/api/files"
+
    {:tags #{"files"}}
 
    ["/data"
