@@ -33,7 +33,7 @@
 (defn retrieve-cloth-handler [request]
   (let [uuid (:uuid (:path-params request))
         cloth-in-db (dc/get-a-cloth! uuid)]
-    (if (not cloth-in-db)
+    (if-not cloth-in-db
       {:status 404 :body {:error "Cloth not found"}}
       (let [adapted-cloth (ac/cloth-adapter cloth-in-db)
             valid-cloth (m/validate sc/Cloth adapted-cloth)]

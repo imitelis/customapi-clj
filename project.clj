@@ -37,6 +37,7 @@
   :test-selectors {:unit (fn [m] (.contains (str (:ns m)) "unit"))
                    :integration (fn [m] (.contains (str (:ns m)) "integration"))}
   :plugins [[lein-environ "1.2.0"]
+            [lein-kibit "0.1.8"]
             [lein-nsorg "0.3.0" :exclusions [org.clojure/clojure]]
             [lein-cljfmt "0.6.4" :exclusions [org.clojure/clojure]]]
   :profiles {:uberjar {:aot :all
